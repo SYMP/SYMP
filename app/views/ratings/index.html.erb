@@ -1,0 +1,31 @@
+<h1>Listing ratings</h1>
+
+<table>
+  <tr>
+    <th>Rated user</th>
+    <th>Rating user</th>
+    <th>Rating</th>
+    <th>Rating user comment</th>
+    <th>Rated user comment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ratings.each do |rating| %>
+  <tr>
+    <td><%= rating.rated_user %></td>
+    <td><%= rating.rating_user %></td>
+    <td><%= rating.rating %></td>
+    <td><%= rating.rating_user_comment %></td>
+    <td><%= rating.rated_user_comment %></td>
+    <td><%= link_to 'Show', rating %></td>
+    <td><%= link_to 'Edit', edit_rating_path(rating) %></td>
+    <td><%= link_to 'Destroy', rating, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Rating', new_rating_path %>
