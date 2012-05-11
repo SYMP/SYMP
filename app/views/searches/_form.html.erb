@@ -1,4 +1,4 @@
-<%= form_for(@search) do |f| %>
+<%= form_for(@search) do |f| %> <!--form helper für new.html.erb-->
   <% if @search.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@search.errors.count, "error") %> prohibited this search from being saved:</h2>
@@ -11,19 +11,41 @@
     </div>
   <% end %>
 
+
   <div class="field">
-    <%= f.label :user %><br />
+    <%= f.label :username %><br />
     <%= f.text_field :user %>
   </div>
-  <div class="field">
-    <%= f.label :skill %><br />
-    <%= f.text_field :skill %>
+   <div class="field">
+        
+    <%= radio_button_tag(:gender, "female") %>
+    <%= label_tag(:gender_female, "female") %>
+    <%= radio_button_tag(:gender, "male") %>
+    <%= label_tag(:gender_male, "male") %>
+    <%= radio_button_tag(:gender, "no matter") %>
+    <%= label_tag(:gender_no_matter ,"no matter") %>
+ 
   </div>
+
+
   <div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
+    <%= f.label :skill, "Which skills are you searching for?" %><br />
+    <%= f.select :skill, ["Please choose","Gitarre", "Klavier", "Gesang"]%><br/>
+    
+    
   </div>
+
+  <div class="field">
+    <%= f.label :city, "City" %><br />
+        
+    <%= f.select :city, ["Please choose","Berlin", "Köln", "Hamburg"]%>
+  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :method => "get" %>    <!-- search forms immer mit get methode erstellen -->
   </div>
+
+
+
+
 <% end %>
