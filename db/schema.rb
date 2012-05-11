@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120508111924) do
+ActiveRecord::Schema.define(:version => 20120511084801) do
 
   create_table "ratings", :force => true do |t|
     t.integer  "rated_user"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(:version => 20120508111924) do
     t.string   "rated_user_comment"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+  end
+
+  create_table "searches", :force => true do |t|
+    t.string   "user"
+    t.string   "skill"
+    t.string   "city"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "skills", :force => true do |t|
