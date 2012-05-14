@@ -1,4 +1,10 @@
 SYMP::Application.routes.draw do
+  resources :posts
+
+  resources :topics
+
+  resources :sections
+
   resources :ratings
 
   resources :skills

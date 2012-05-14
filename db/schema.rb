@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120508111924) do
+ActiveRecord::Schema.define(:version => 20120514154816) do
+
+  create_table "posts", :force => true do |t|
+    t.string   "subject"
+    t.text     "message"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "topic_id"
+  end
 
   create_table "ratings", :force => true do |t|
     t.integer  "rated_user"
@@ -23,11 +31,25 @@ ActiveRecord::Schema.define(:version => 20120508111924) do
     t.datetime "updated_at",          :null => false
   end
 
+  create_table "sections", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "skills", :force => true do |t|
     t.integer  "user_id"
     t.string   "skill"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "section_id"
   end
 
   create_table "users", :force => true do |t|
