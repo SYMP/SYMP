@@ -1,13 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  pw_hash: MyString
-  birthdate: 2012-05-15
+  user: MyString
+  skill: MyString
   city: MyString
 
 two:
-  name: MyString
-  pw_hash: MyString
-  birthdate: 2012-05-15
+  user: MyString
+  skill: MyString
   city: MyString

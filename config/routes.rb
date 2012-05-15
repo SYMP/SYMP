@@ -7,6 +7,8 @@ SYMP::Application.routes.draw do
 
   resources :sections
 
+  resources :searches
+
   resources :ratings
 
   resources :skills
