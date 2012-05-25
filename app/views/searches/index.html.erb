@@ -1,4 +1,4 @@
-<h1>Listing searches</h1>
+<h1>Search</h1>
 
 <table>
   <tr>
@@ -12,7 +12,7 @@
 
 <% @searches.each do |search| %>
   <tr>
-    <td><%= search.user %></td>
+    <td><%= search.name %></td>
     <td><%= search.skill %></td>
     <td><%= search.city %></td>
     <td><%= link_to 'Show', search %></td>

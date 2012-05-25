@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120515154120) do
+=======
+ActiveRecord::Schema.define(:version => 20120525085502) do
+
+  create_table "posts", :force => true do |t|
+    t.string   "subject"
+    t.text     "message"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "topic_id"
+    t.integer  "user_id"
+  end
+>>>>>>> master
 
   create_table "ratings", :force => true do |t|
     t.integer  "rated_user"
@@ -24,11 +37,18 @@ ActiveRecord::Schema.define(:version => 20120515154120) do
   end
 
   create_table "searches", :force => true do |t|
-    t.string   "user"
+    t.string   "name"
     t.string   "skill"
     t.string   "city"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "sections", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "skills", :force => true do |t|
@@ -36,6 +56,14 @@ ActiveRecord::Schema.define(:version => 20120515154120) do
     t.string   "skill"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "section_id"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|

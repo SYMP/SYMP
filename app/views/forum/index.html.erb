@@ -1,0 +1,19 @@
+<% if notice %>
+<p id="notice"><% notice %></p>
+<% end %>
+
+<h1>SYMP Forum</h1>
+
+<% @sections.each do |section| %>
+	<div class="forum_section">
+		<h3><%= section.title %></h3>
+		<%= sanitize(section.description) %>
+
+		<% @topics.each do |topic| %>
+			<div class="section_topic">
+				<h5><%= topic.title %></h5>	
+			</div>
+		<% end %>
+
+	</div>		
+<% end %>
