@@ -34,14 +34,16 @@
     <%= f.select :skill, ["Please choose","Gitarre", "Klavier", "Gesang"]%><br/>
     
     
-  </div>
+  </div>-->
 
   <div class="field">
     <%= f.label :city, "City" %><br />
         
-    <%= f.select :city, ["Please choose","Berlin", "Köln", "Hamburg"]%>
+        <!-- dynamic select field from all entries of the db -->
+     <%= f.select("city", User.all.collect {|u| [ u.city ] })   %>
+    
 
-  </div>-->
+  </div>
 
   <div class="actions">
     <%= f.submit "Search", :method => "get" %>    <!-- search forms immer mit get methode erstellen -->

@@ -11,9 +11,6 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20120515154120) do
-=======
 ActiveRecord::Schema.define(:version => 20120525085502) do
 
   create_table "posts", :force => true do |t|
@@ -24,7 +21,6 @@ ActiveRecord::Schema.define(:version => 20120525085502) do
     t.integer  "topic_id"
     t.integer  "user_id"
   end
->>>>>>> master
 
   create_table "ratings", :force => true do |t|
     t.integer  "rated_user"

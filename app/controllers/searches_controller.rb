@@ -46,6 +46,7 @@ class SearchesController < ApplicationController
   def create
     #@search = Search.new(params[:search])
     @users = User.where(params[:search])
+    #@users = User.where(city = params[:city])
 
      respond_to do |format|
       format.html # new.html.erb
