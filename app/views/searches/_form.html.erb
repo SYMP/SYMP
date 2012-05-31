@@ -14,9 +14,10 @@
 
   <div class="field">
     <%= f.label :username %><br />
-    <%= f.text_field :user %>
+    <%= f.text_field :name %>
   </div>
-   <div class="field">
+  
+  <!-- <div class="field">
         
     <%= radio_button_tag(:gender, "female") %>
     <%= label_tag(:gender_female, "female") %>
@@ -39,13 +40,12 @@
     <%= f.label :city, "City" %><br />
         
     <%= f.select :city, ["Please choose","Berlin", "Köln", "Hamburg"]%>
-  </div>
+
+  </div>-->
 
   <div class="actions">
-    <%= f.submit :method => "get" %>    <!-- search forms immer mit get methode erstellen -->
+    <%= f.submit "Search", :method => "get" %>    <!-- search forms immer mit get methode erstellen -->
+    
   </div>
-
-
-
 
 <% end %>

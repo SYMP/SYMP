@@ -1,0 +1,30 @@
+<h1>Listing users</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+      <th>City</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    
+    <td><%= user.city %></td>
+    
+    <!-- @TODO: Show Profile without PW! -->
+   <td>  <td><%= link_to 'Show Profile', user %></td></td>
+      
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Search', new_search_path %>
+
+
+
