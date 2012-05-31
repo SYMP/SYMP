@@ -1,14 +1,14 @@
 class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
-  def index
-    @posts = Post.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @posts }
-    end
-  end
+  # def index
+#     @posts = Post.all
+# 
+#     respond_to do |format|
+#       format.html # index.html.erb
+#       format.json { render json: @posts }
+#     end
+#   end
 
   # GET /posts/1
   # GET /posts/1.json
@@ -56,7 +56,9 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to :controller => 'topics', :action =>'show', :id => @topic.id, notice: 'Post was successfully created.' }
+        format.html { redirect_to({:controller => 'topics', :action =>'show', :id => @topic.id }, notice: 'Post was successfully created.')}
+        #format.html { redirect_to topic_posts_url, notice: 'Post was successfully created.'}
+        #format.html { redirect_to @post, notice: 'Post was successfully created.'}
         format.json { render json: @post, status: :created, location: @post }
       else
         format.html { render action: "new" }
@@ -69,10 +71,12 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
+    @topic = @post.topic
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to({:controller => 'topics', :action =>'show', :id => @topic.id }, notice: 'Post was successfully updated.')}
+        #format.html { redirect_to @post, notice: 'Post was successfully updated.'}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -85,10 +89,13 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post = Post.find(params[:id])
+    @topic = @post.topic
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url }
+	  format.html { redirect_to({:controller => 'topics', :action =>'show', :id => @topic.id }, notice: 'Post was successfully deleted.')}
+      #format.html { redirect_to posts_url }
+      #format.html { redirect_to topic_posts_url }
       format.json { head :no_content }
     end
   end
