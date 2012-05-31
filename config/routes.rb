@@ -1,4 +1,6 @@
 SYMP::Application.routes.draw do
+  resources :user_sessions
+
   get "forum/index"
 
   resources :posts
