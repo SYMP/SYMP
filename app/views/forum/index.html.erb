@@ -3,10 +3,8 @@
 <% end %>
 
 <h1>SYMP Forum</h1>
-
-<% if @sections.empty? %>
+<hr>
 <%= link_to 'New Section', new_section_path %> <!-- IF ADMIN -->
-<% end %>
 
 <% if !@sections.empty? %>
 	<% @sections.each do |section| %>
@@ -14,18 +12,17 @@
 			<hr>
 			<h2><%= section.title %></h2>
 			<%= sanitize(section.description) %>
-			<br>
-			<%= link_to 'New Topic', new_topic_path(:section_id => section.id) %>
+			<p>
+			<%= link_to 'New Topic', new_section_topic_path(section) %>
+			</p>
 			<% for topic in @sectionTopics[section.id] do %>
 				<div class="section_topic">
-					<%= topic.title %>
+					<%= link_to topic.title, section_topic_path(section,topic) %>
 				</div>
 			<% end %>
 			
-		</div>		
+		</div>	
+		<hr>
 	<% end %>
 <% end %>
  
-<% #if @topics.empty? %>
-<%#= link_to 'New Topic', new_topic_path %>
-<%# end %>

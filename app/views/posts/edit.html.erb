@@ -2,5 +2,8 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<%#= link_to 'Show', topic_post_path(@topic,@post) %> 
+<%= link_to 'Back', :controller => 'topics', :action =>'show', :id => @topic.id%>|
+<%#= link_to 'Back', :controller => 'topics', :action =>'show', :id => @topic.id%>
+<%#= link_to 'Back', topic_path(@topic) %>
+<%= link_to 'Back', topic_posts_path(@topic) %>

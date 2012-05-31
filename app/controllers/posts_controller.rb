@@ -13,8 +13,8 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @post = Post.find(params[:id])
-
+	@post = Post.find(params[:id])
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }
@@ -24,6 +24,10 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
+	if params[:topic_id]
+		@topic = Topic.find(params[:topic_id])	
+	end
+
     @post = Post.new
 
     respond_to do |format|
@@ -34,17 +38,25 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+
     @post = Post.find(params[:id])
+    @topic = @post.topic
+    
   end
 
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
+	if params[:topic_id]
+	    @topic = Topic.find(params[:topic_id])
+	    @post = @topic.posts.build(params[:post])
+	else
+    	@post = Post.new(params[:post])
+    end
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to :controller => 'topics', :action =>'show', :id => @topic.id, notice: 'Post was successfully created.' }
         format.json { render json: @post, status: :created, location: @post }
       else
         format.html { render action: "new" }
