@@ -1,5 +1,12 @@
-<h1>Listing users</h1>
+<p id="notice"><%= notice %></p>
+<h1>Search Result</h1>
 
+<!-- if there are no matches from the search-->
+<% if @users.empty? %>
+  
+  Sorry, but there are no matches for your search!
+
+<% else %>
 <table>
   <tr>
     <th>Name</th>
@@ -10,17 +17,23 @@
   </tr>
 
 <% @users.each do |user| %>
+
   <tr>
+
     <td><%= user.name %></td>
     
     <td><%= user.city %></td>
-    
+  
     <!-- @TODO: Show Profile without PW! -->
    <td>  <td><%= link_to 'Show Profile', user %></td></td>
       
   </tr>
+
+<% end %>
 <% end %>
 </table>
+
+
 
 <br />
 

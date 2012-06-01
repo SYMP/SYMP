@@ -13,6 +13,11 @@ def users
 
 def user_conditions
 	["users.name LIKE ?", "%#{users}%"] unless users.blank?
+
+end
+
+def city_conditions
+	["users.city LIKE ?", "%#{city}%"] unless city.blank?
 end
 
 #def skill_conditions
