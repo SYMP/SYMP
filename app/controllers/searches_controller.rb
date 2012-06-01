@@ -45,12 +45,19 @@ class SearchesController < ApplicationController
   # POST /searches.json
   def create
           
-      # If User AND City match with db - 
-        @users = User.where('name = ? AND city = ?',  params[:search ][:name], params[:search][:city])
-    
-    
+      # If Userfield is empty, only search for city
 
-     respond_to do |format|
+      if params[:search][:name].empty? && params[:search][:city]
+
+              @users = User.where('city = ?', params[:search][:city]) 
+
+                # Or if Cityfield is empty, only search for name
+        elsif  params[:search][:name] && params[:search][:city].empty?
+
+             @users = User.where('name = ? ', params[:search ][:name])
+      
+         
+        respond_to do |format|
 
      
      #flash[:notice] = "Ergebnis" # so kann man flash nachrichten ausgeben
@@ -58,6 +65,7 @@ class SearchesController < ApplicationController
       format.html 
       format.json { render json: @search }  
      
+ end
   end
     
   end
