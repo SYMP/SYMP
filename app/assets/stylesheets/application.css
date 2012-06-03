@@ -83,7 +83,7 @@ q:before, q:after { content: ""; content: none; }
  
 body { 
 	color: #333;
-	font: 16px/28px Georgia, 'Times New Roman', Times, serif;
+	font: 16px/28px Georgia, 'Droid Serif', Georgia, serif;
 	
 	/* CSS3 gradient background pattern @credits http://leaverou.me/demos/css3-patterns.html */
 	background-color: #eee; /* Change this to change both stribe colors */
@@ -433,10 +433,7 @@ hr {
 	box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.4), 0px 0px 15px rgba(204, 204, 204, 0.5);
 }
 
-	/* No support for rgba */
-	.no-rgba #main {
-		background: url(images/content_bg.png) repeat;
-	}
+	
 
 #content {
 	float: left;
@@ -799,15 +796,15 @@ figcaption {
 		-webkit-box-sizing: content-box;
 		box-sizing: content-box;
 	}
-	
+	/*  --------- search form  */
 button, input, select, textarea, label {
-	font: 14px 'Droid Serif', Georgia, serif;	
+	font: 14px 
 }
 
 label {
 	display: block;
 	font-weight: bold;
-	margin: 0 0 7px 10px;
+	margin: 10px 0 0 10px;
 }
 
 fieldset {
@@ -832,7 +829,7 @@ textarea {
 	border: none;
 	border-radius: 20px;
 	color: #777;
-	padding: 10px 15px;
+	padding: 7px 15px;
 	-webkit-box-shadow: 0px 1px 1px #bbb;
 	-moz-box-shadow: 0px 1px 1px #bbb;
 	box-shadow: 0px 1px 1px #bbb;

@@ -49,15 +49,10 @@
 <!-- dynamic select field from all entries of the db -->
     <%= selectfield = f.select("city", collect_cities , {:include_blank => 'Please select'})%>
      
-      
-
-
-
-    <!--@TODO: every city only has to be once in this select field -->
-
+  
   </div>
 
-  <div class="actions">
+  <div class="">
     <%= f.submit "Search", :method => "get" %>    <!-- search forms immer mit get methode erstellen -->
     
   </div>

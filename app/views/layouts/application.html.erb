@@ -14,11 +14,8 @@
     <header id="header" class="clearfix" role="banner">
     
         <hgroup>
-            <h1 id="site-title">  <%= link_to "SYMP", {:controller => "forum"}, :id =>"index" , :class => "forum" %> </h1>
+            <h1 id="site-title">  <%= link_to "SYMP", home_path%> </h1>
             <h2 id="site-description">ShareYourMusicPassion</h2>
-
- 
- 
 
         </hgroup>
     
@@ -26,29 +23,14 @@
 
 <div id="main" class="clearfix">
 
- <nav id="menu" class="clearfix" role="navigation">
-        <ul> 
-            <li class="current"><%= link_to "Home", {:controller => "forum"}, :id =>"index" , :class => "forum" %></li>
-            <li>
-                <a href="about.html">About</a>
-                <ul>
-                    <li><a href="#">The Idea</a></li>
-                    <li><a href="#">The Team</a></li>
-                </ul>
-            </li>
-            <li><%= link_to "Forum", {:controller => "forum"}, :id =>"index" , :class => "forum" %></li>
-            <li><%= link_to "Search", {:controller => "searches"}, :id =>"show" , :class => "search" %></li>
-            <li><%= link_to "Users", {:controller => "users"}, :id =>"show" , :class => "user" %></li>
-        </ul>
-    </nav> <!-- #nav -->
-
+    <%= render ('layouts/navigation') %>
 
 <%= yield %>
 
 </div>
 
 <footer id="footer">
-        <!-- You're free to remove the credit link to Jayj.dk in the footer, but please, please leave it there :) -->
+        
         <p>
             SYMP &copy; 2012 <a href="#">www.symp.com</a>
             <span class="sep">|</span>
