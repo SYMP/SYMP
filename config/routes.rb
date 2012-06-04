@@ -15,7 +15,11 @@ SYMP::Application.routes.draw do
 
   resources :skills
 
+  resources :user_sessions
+
   resources :users
+  get "login" => "user_sessions#new"
+  get "logout" => "user_sessions#destroy"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
