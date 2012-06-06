@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <b>Email:</b>
-  <%= @user.email %>
+  <b>Pw hash:</b>
+  <%= @user.pw_hash %>
 </p>
 
 <p>
@@ -20,18 +20,6 @@
   <%= @user.city %>
 </p>
 
-<p>
-  <b>Skills:</b><br />
-  <% @skills.each do |skill| %>
-	<tr>
-      <td><%= skill.skill %></td><br/>
-	</tr>
-  <% end %>
-</p>
 
-<% if @user.id == current_user.id %>
-  <%= link_to 'Edit', edit_user_path(@user) %>
-  <%= link_to 'New Skill', new_skill_path %>
-<% end %>
+<%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
-

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Topic do
-<<<<<<< HEAD
 
    describe "initialization" do
 
@@ -11,7 +10,4 @@ describe Topic do
   	end 
   
   end
-=======
-  pending "add some examples to (or delete) #{__FILE__}"
->>>>>>> arne_branch
 end

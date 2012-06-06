@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Post do
-<<<<<<< HEAD
  
   describe "initialization" do
 
@@ -17,7 +16,4 @@ describe Post do
 
   end
 
-=======
-  pending "add some examples to (or delete) #{__FILE__}"
->>>>>>> arne_branch
 end
