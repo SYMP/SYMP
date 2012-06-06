@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Section do
+<<<<<<< HEAD
   
   describe "initialization" do
 
@@ -16,4 +17,7 @@ describe Section do
   	end
 
   end
+=======
+  pending "add some examples to (or delete) #{__FILE__}"
+>>>>>>> arne_branch
 end
