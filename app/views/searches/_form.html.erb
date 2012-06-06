@@ -39,9 +39,6 @@
   <div class="field">
     <%= f.label :city, "City" %><br />
         
-        
-
-
 <!-- collect all cities from db and filter all double entries-->
 <% collect_cities = User.all.collect {|u| [u.city.capitalize]} 
       collect_cities = collect_cities.uniq %>

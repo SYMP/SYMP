@@ -55,8 +55,11 @@ class SearchesController < ApplicationController
         elsif  params[:search][:name] && params[:search][:city].empty?
 
              @users = User.where('name = ? ', params[:search ][:name])
-      
-         
+
+        else
+
+            @users = User.where('name = ? AND city =? ', params[:search ][:name], params[:search ][:city])
+
         respond_to do |format|
 
      
