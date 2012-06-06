@@ -15,9 +15,14 @@ SYMP::Application.routes.draw do
 
   resources :skills
 
+  resources :user_sessions
+
   resources :users
 
   resources :home
+
+  get "login" => "user_sessions#new"
+  get "logout" => "user_sessions#destroy"
 
   # route for section->topic connection 
   # enables something like /section/1/topic and makes params[:section_id] available for the topics_controller
