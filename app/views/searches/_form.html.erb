@@ -14,9 +14,10 @@
 
   <div class="field">
     <%= f.label :username %><br />
-    <%= f.text_field :user %>
+    <%= f.text_field :name %>
   </div>
-   <div class="field">
+  
+  <!-- <div class="field">
         
     <%= radio_button_tag(:gender, "female") %>
     <%= label_tag(:gender_female, "female") %>
@@ -33,19 +34,24 @@
     <%= f.select :skill, ["Please choose","Gitarre", "Klavier", "Gesang"]%><br/>
     
     
-  </div>
+  </div>-->
 
   <div class="field">
     <%= f.label :city, "City" %><br />
         
-    <%= f.select :city, ["Please choose","Berlin", "Köln", "Hamburg"]%>
+<!-- collect all cities from db and filter all double entries-->
+<% collect_cities = User.all.collect {|u| [u.city.capitalize]} 
+      collect_cities = collect_cities.uniq %>
+
+<!-- dynamic select field from all entries of the db -->
+    <%= selectfield = f.select("city", collect_cities , {:include_blank => 'Please select'})%>
+     
+  
   </div>
 
-  <div class="actions">
-    <%= f.submit :method => "get" %>    <!-- search forms immer mit get methode erstellen -->
+  <div class="">
+    <%= f.submit "Search", :method => "get" %>    <!-- search forms immer mit get methode erstellen -->
+    
   </div>
-
-
-
 
 <% end %>

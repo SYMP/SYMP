@@ -14,6 +14,7 @@ class TopicsController < ApplicationController
   # GET /topics/1.json
   def show
     @topic = Topic.find(params[:id])
+    @posts = @topic.posts
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,8 +25,12 @@ class TopicsController < ApplicationController
   # GET /topics/new
   # GET /topics/new.json
   def new
-    @topic = Topic.new
-
+	if params[:section_id]
+		@section = Section.find(params[:section_id])	
+	end
+	
+	@topic = Topic.new()
+   
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @topic }
@@ -40,7 +45,13 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
-    @topic = Topic.new(params[:topic])
+	  
+	if params[:section_id]
+	    @section = Section.find(params[:section_id])
+	    @topic = @section.topics.build(params[:topic])
+	else
+		@topic = Topic.new(params[:topic])
+	end
 
     respond_to do |format|
       if @topic.save

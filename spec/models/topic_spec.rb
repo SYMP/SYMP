@@ -1,5 +1,13 @@
 require 'spec_helper'
 
 describe Topic do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+   describe "initialization" do
+
+  	it "should have a title" do
+  		topic = Topic.new	
+  		topic.title = "Test Title"
+  	end 
+  
+  end
 end

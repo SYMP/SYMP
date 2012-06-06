@@ -1,10 +1,33 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Title:</b>
-  <%= @topic.title %>
+  <h2><%= @topic.title %></h2>
+  <%= link_to 'Edit topic title', edit_topic_path(@topic) %> <!-- IF owner -->
 </p>
+<% if @posts.empty? %>
+<%= link_to 'New Post', new_topic_post_path(@topic) %>
+<% end %>
 
+<% if !@posts.empty? %>
+	<% @posts.each do |post| %>
+		<div class="post-subject">
+			<%= post.subject %>
+		</div>
+		<div class="post-message">
+			<%= post.message %>
+		</div>
+		<hr>
+		<%= link_to 'Edit Post', edit_topic_post_path(@topic,post) %>
+		| <!-- to seperate the links -->
+		<%= link_to 'Delete Post', topic_post_path(@topic,post), confirm: 'Are you sure?', method: :delete %>
+		| <!-- to seperate the links -->
+		<%= link_to 'New Post', new_topic_post_path(@topic) %>
+		<hr>
+	<% end %>
+<% end %>
 
-<%= link_to 'Edit', edit_topic_path(@topic) %> |
-<%= link_to 'Back', topics_path %>
+<p>
+
+<!--older variante, but it works-->
+<%= link_to 'Back', :controller => "forum", :action => "index" %> 
+</p>

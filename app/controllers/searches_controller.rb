@@ -2,8 +2,10 @@ class SearchesController < ApplicationController
   # GET /searches
   # GET /searches.json
   def index
-    @searches = Search.all
 
+    @searches = Search.all
+   # @users = User.all 
+ 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @searches }
@@ -13,12 +15,14 @@ class SearchesController < ApplicationController
   # GET /searches/1
   # GET /searches/1.json
   def show
-    @search = Search.find(params[:id])
 
-    respond_to do |format|
+     @search = Search.all
+
+     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @search }
     end
+    
   end
 
   # GET /searches/new
@@ -40,17 +44,33 @@ class SearchesController < ApplicationController
   # POST /searches
   # POST /searches.json
   def create
-    @search = Search.new(params[:search])
+          
+      # If Userfield is empty, only search for city
 
-    respond_to do |format|
-      if @search.save
-        format.html { redirect_to @search, notice: 'Search was successfully created.' }
-        format.json { render json: @search, status: :created, location: @search }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @search.errors, status: :unprocessable_entity }
-      end
-    end
+      if params[:search][:name].empty? && params[:search][:city]
+
+              @users = User.where('city = ?', params[:search][:city]) 
+
+                # Or if Cityfield is empty, only search for name
+        elsif  params[:search][:name] && params[:search][:city].empty?
+
+             @users = User.where('name = ? ', params[:search ][:name])
+
+        else
+
+            @users = User.where('name = ? AND city =? ', params[:search ][:name], params[:search ][:city])
+
+        respond_to do |format|
+
+     
+     #flash[:notice] = "Ergebnis" # so kann man flash nachrichten ausgeben
+      
+      format.html 
+      format.json { render json: @search }  
+     
+ end
+  end
+    
   end
 
   # PUT /searches/1
@@ -81,3 +101,4 @@ class SearchesController < ApplicationController
     end
   end
 end
+

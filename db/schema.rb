@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120525082957) do
+ActiveRecord::Schema.define(:version => 20120525085502) do
 
   create_table "posts", :force => true do |t|
     t.string   "subject"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(:version => 20120525082957) do
   end
 
   create_table "searches", :force => true do |t|
-    t.string   "user"
+    t.string   "name"
     t.string   "skill"
     t.string   "city"
     t.datetime "created_at", :null => false
@@ -67,11 +67,8 @@ ActiveRecord::Schema.define(:version => 20120525082957) do
     t.string   "pw_hash"
     t.date     "birthdate"
     t.string   "city"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.string   "email"
-    t.string   "persistence_token"
-    t.string   "crypted_password"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
