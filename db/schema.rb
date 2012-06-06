@@ -72,11 +72,8 @@ ActiveRecord::Schema.define(:version => 20120525085502) do
     t.string   "pw_hash"
     t.date     "birthdate"
     t.string   "city"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.string   "email"
-    t.string   "persistence_token"
-    t.string   "crypted_password"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
