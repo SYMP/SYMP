@@ -28,4 +28,8 @@ $(document).ready(function(){
 		
 	});
 	
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> arne_branch

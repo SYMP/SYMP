@@ -15,7 +15,13 @@ SYMP::Application.routes.draw do
 
   resources :skills
 
+  resources :user_sessions
   resources :users
+
+  resources :home
+
+  get "login" => "user_sessions#new"
+  get "logout" => "user_sessions#destroy"
 
   resources :home
 
