@@ -1,0 +1,17 @@
+ <nav id="menu" class="clearfix" role="navigation">
+    
+        <ul> 
+            <li class="current"><%= link_to "Home", home_path%> </li>
+   <!--         <li>
+            <li>
+                <a href="about.html">About</a>
+                <ul>
+                    <li><a href="#">The Idea</a></li>
+                    <li><a href="#">The Team</a></li>
+                </ul>
+            </li>-->
+            <li> <%= link_to "Forum", {:controller => "forum"}, :id =>"index" , :class => "forum" %></li>
+            <li><%= link_to "Search", {:controller => "searches"}, :id =>"show" , :class => "search" %></li>
+            <li><%= link_to "Users", users_path%></li>
+        </ul>
+    </nav> <!-- #nav -->

@@ -1,4 +1,6 @@
 SYMP::Application.routes.draw do
+  get "home/index"
+
   get "forum/index"
 
   resources :posts
@@ -15,6 +17,10 @@ SYMP::Application.routes.draw do
 
   resources :users
 
+<<<<<<< HEAD
+  resources :home
+
+=======
   # route for section->topic connection 
   # enables something like /section/1/topic and makes params[:section_id] available for the topics_controller
   resources :sections do
@@ -28,6 +34,7 @@ SYMP::Application.routes.draw do
   	resources :posts do
   	end
   end
+>>>>>>> master
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -79,7 +86,7 @@ SYMP::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
-  root :to => 'forum#index', :as => 'forum'
+  root :to => 'home#index', :as => 'home'
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

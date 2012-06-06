@@ -34,16 +34,25 @@
     <%= f.select :skill, ["Please choose","Gitarre", "Klavier", "Gesang"]%><br/>
     
     
-  </div>
+  </div>-->
 
   <div class="field">
     <%= f.label :city, "City" %><br />
         
-    <%= f.select :city, ["Please choose","Berlin", "Köln", "Hamburg"]%>
+        
 
-  </div>-->
 
-  <div class="actions">
+<!-- collect all cities from db and filter all double entries-->
+<% collect_cities = User.all.collect {|u| [u.city.capitalize]} 
+      collect_cities = collect_cities.uniq %>
+
+<!-- dynamic select field from all entries of the db -->
+    <%= selectfield = f.select("city", collect_cities , {:include_blank => 'Please select'})%>
+     
+  
+  </div>
+
+  <div class="">
     <%= f.submit "Search", :method => "get" %>    <!-- search forms immer mit get methode erstellen -->
     
   </div>

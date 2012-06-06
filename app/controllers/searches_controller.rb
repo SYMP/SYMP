@@ -4,7 +4,7 @@ class SearchesController < ApplicationController
   def index
 
     @searches = Search.all
-    @users = User.all 
+   # @users = User.all 
  
     respond_to do |format|
       format.html # index.html.erb
@@ -44,13 +44,29 @@ class SearchesController < ApplicationController
   # POST /searches
   # POST /searches.json
   def create
-    #@search = Search.new(params[:search])
-    @users = User.where(params[:search])
+          
+      # If Userfield is empty, only search for city
 
-     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @search }
-    end
+      if params[:search][:name].empty? && params[:search][:city]
+
+              @users = User.where('city = ?', params[:search][:city]) 
+
+                # Or if Cityfield is empty, only search for name
+        elsif  params[:search][:name] && params[:search][:city].empty?
+
+             @users = User.where('name = ? ', params[:search ][:name])
+      
+         
+        respond_to do |format|
+
+     
+     #flash[:notice] = "Ergebnis" # so kann man flash nachrichten ausgeben
+      
+      format.html 
+      format.json { render json: @search }  
+     
+ end
+  end
     
   end
 
