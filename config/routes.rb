@@ -17,10 +17,8 @@ SYMP::Application.routes.draw do
 
   resources :users
 
-<<<<<<< HEAD
   resources :home
 
-=======
   # route for section->topic connection 
   # enables something like /section/1/topic and makes params[:section_id] available for the topics_controller
   resources :sections do
@@ -34,7 +32,6 @@ SYMP::Application.routes.draw do
   	resources :posts do
   	end
   end
->>>>>>> master
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

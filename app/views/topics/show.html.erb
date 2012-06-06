@@ -18,12 +18,16 @@
 		</div>
 		<hr>
 		<%= link_to 'Edit Post', edit_topic_post_path(@topic,post) %>
+		| <!-- to seperate the links -->
 		<%= link_to 'Delete Post', topic_post_path(@topic,post), confirm: 'Are you sure?', method: :delete %>
+		| <!-- to seperate the links -->
 		<%= link_to 'New Post', new_topic_post_path(@topic) %>
 		<hr>
 	<% end %>
 <% end %>
 
 <p>
-<%= link_to 'Back', forum_path %>
+
+<!--older variante, but it works-->
+<%= link_to 'Back', :controller => "forum", :action => "index" %> 
 </p>
