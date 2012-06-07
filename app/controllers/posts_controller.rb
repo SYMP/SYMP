@@ -59,6 +59,8 @@ class PostsController < ApplicationController
     	@post = Post.new(params[:post])
     end
 
+    @post.user_id = current_user.id
+
     respond_to do |format|
       if @post.save
         format.html { redirect_to({:controller => 'topics', :action =>'show', :id => @topic.id }, notice: 'Post was successfully created.')}
