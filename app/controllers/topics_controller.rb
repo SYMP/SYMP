@@ -15,7 +15,10 @@ class TopicsController < ApplicationController
   def show
     @topic = Topic.find(params[:id])
     @posts = @topic.posts
-
+    @topicOwner = User.find(@topic.user_id)
+    @postOwners = Hash.new
+    @posts.each { |p| @postOwners[p.id] = User.find(p.user_id)}
+   
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @topic }
@@ -28,9 +31,9 @@ class TopicsController < ApplicationController
 	if params[:section_id]
 		@section = Section.find(params[:section_id])	
 	end
-	
+		
 	@topic = Topic.new()
-   
+      
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @topic }
@@ -52,6 +55,8 @@ class TopicsController < ApplicationController
 	else
 		@topic = Topic.new(params[:topic])
 	end
+
+	@topic.user_id = current_user.id
 
     respond_to do |format|
       if @topic.save
