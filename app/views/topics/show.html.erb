@@ -17,24 +17,26 @@
 
 <% if !@posts.empty? %>
 	<% @posts.each do |post| %>
-	<div class="post-container">
-		<div class="post-user"><%=  %></div>
-		<div class="post-subject">
-			<%= post.subject %>
+	    <% postOwner = @postOwners[post.id] %>
+	    <div class="post-container">
+			<div class="post-subject">
+				<%= post.subject %> 
+			</div>
+			<div class="post-owner"><%= link_to postOwner.name, user_path(postOwner) %></div>
+			<div class="post-message">
+				<%= post.message %>
+			</div>
+			<div class="post-actions">
+				<% if postOwner.id == current_user.id %>
+					<%= link_to 'Edit Post', edit_topic_post_path(@topic,post) %>
+					| <!-- to seperate the links -->
+					<%= link_to 'Delete Post', topic_post_path(@topic,post), confirm: 'Are you sure?', method: :delete %>
+					| <!-- to seperate the links -->
+					<% end %>
+				<%= link_to 'New Post', new_topic_post_path(@topic) %>
+			</div>
+			<hr>	
 		</div>
-		<div class="post-message">
-			<%= post.message %>
-		</div>
-		<p>
-		<%= link_to 'Edit Post', edit_topic_post_path(@topic,post) %>
-		| <!-- to seperate the links -->
-		<%= link_to 'Delete Post', topic_post_path(@topic,post), confirm: 'Are you sure?', method: :delete %>
-		| <!-- to seperate the links -->
-		<%= link_to 'New Post', new_topic_post_path(@topic) %>
-		</p>
-		<hr>	
-	</div>
-
 	<% end %>
 <% end %>
 
