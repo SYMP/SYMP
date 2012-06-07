@@ -1,4 +1,4 @@
-SYMP::Application.routes.draw do
+SYMP::Application.routes.draw do 
   get "home/index"
 
   get "forum/index"
@@ -22,6 +22,8 @@ SYMP::Application.routes.draw do
 
   get "login" => "user_sessions#new"
   get "logout" => "user_sessions#destroy"
+
+  match 'logout', :to => 'user_sessions#destroy', :as => "logout"
 
   resources :home
 

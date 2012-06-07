@@ -18,6 +18,11 @@
                 </li>
 
             <li><%= link_to "Search", new_search_path%></li>
-            <li><%= link_to "Users", users_path%></li>
+            <% if current_user %>
+                <li><%= link_to "Users", users_path%></li>
+            <% else %>
+
+                <li><%= link_to "Register", new_user_path %></li>
+            <% end %>
         </ul>
     </nav> <!-- #nav -->
