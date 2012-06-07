@@ -1,4 +1,4 @@
-SYMP::Application.routes.draw do
+SYMP::Application.routes.draw do 
   get "home/index"
 
   get "forum/index"
@@ -23,7 +23,8 @@ SYMP::Application.routes.draw do
   get "login" => "user_sessions#new"
   get "logout" => "user_sessions#destroy"
 
-  #resources :home
+  
+  match 'logout', :to => 'user_sessions#destroy', :as => "logout"
 
   # route for section->topic connection 
   # enables something like /section/1/topic and makes params[:section_id] available for the topics_controller
