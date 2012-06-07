@@ -1,9 +1,11 @@
 <p id="notice"><%= notice %></p>
-<h1>Your Search Result</h1>
+
+<h1>Search Result <%= @test %></h1>
 
 <!-- if there are no matches from the search-->
-<% if @users.empty? && @skills.empty?%>
-    
+<% if @result.empty? %>
+  
+
   Sorry, but there are no matches for your search!
 
 <% else %>
@@ -18,7 +20,10 @@
     <th></th>
   </tr>
 
-<% @users.each do |user| %>
+
+<% @result.each do |user| %>
+
+
   <tr>
     <td><%= user.name %></td>
     <td><%= user.city %></td>
