@@ -1,0 +1,23 @@
+ if params[:search][:name].empty? && params[:search][:city] && params[:search][:skill]
+              @users = User.where('city = ? ', params[:search][:city]) 
+            #  @skills = Skill.where('skill = ?', params[:search][:skill])
+
+#läuft
+                 
+# skill-tabelle mit einbeziehen
+
+                # Or if Cityfield is empty, only search for name
+        elsif  params[:search][:name] && params[:search][:city].empty? && params[:search][:skill].empty?
+
+             @users = User.where('name = ? ', params[:search ][:name])
+             @skills = Skill.joins(:user)
+
+        else #params[:search][:skill] && params[:search][:name].empty? && params[:search][:city].empty?
+             @users = User.all
+             @skills = Skill.where('skill = ?', params[:search][:skill])   
+
+        #else
+
+         #   @users = User.where('name = ? AND city =? ', params[:search ][:name], params[:search ][:city])
+            #@skills = Skill.where('skill = ?', params[:search][:skill])
+          #  @skills = Skill.joins(:user)

@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
-<h1>Search Result</h1>
+<h1>Your Search Result</h1>
 
 <!-- if there are no matches from the search-->
-<% if @users.empty? %>
-  
+<% if @users.empty? && @skills.empty?%>
+    
   Sorry, but there are no matches for your search!
 
 <% else %>
@@ -12,29 +12,26 @@
   <tr>
     <th>Name</th>
       <th>City</th>
+      <th>Skills</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @users.each do |user| %>
-
   <tr>
-
     <td><%= user.name %></td>
-    
     <td><%= user.city %></td>
-  
-    <!-- @TODO: Show Profile without PW! -->
-   <td>  <td><%= link_to 'Show Profile', user %></td></td>
+    
       
+    <!-- @TODO: Show Profile without PW! -->
+    <td><%= link_to 'Show Profile', user %></td>
   </tr>
+
 
 <% end %>
 <% end %>
 </table>
-
-
 
 <br />
 

@@ -26,15 +26,23 @@
     <%= radio_button_tag(:gender, "no matter") %>
     <%= label_tag(:gender_no_matter ,"no matter") %>
  
-  </div>
+  </div> -->
 
 
   <div class="field">
     <%= f.label :skill, "Which skills are you searching for?" %><br />
-    <%= f.select :skill, ["Please choose","Gitarre", "Klavier", "Gesang"]%><br/>
     
-    
-  </div>-->
+  
+    <%collect_skills = Skill.all.collect {|u| [u.skill]} 
+      collect_skills = collect_skills.uniq %>
+
+<!-- dynamic select field from all entries of the db -->
+    <%= selectfield = f.select("skill", collect_skills , {:include_blank => 'Please select'})%><br/>
+
+<!--skills = Skill.all      gibts auch gleich die UserID mit-->
+
+
+  </div>
 
   <div class="field">
     <%= f.label :city, "City" %><br />
@@ -46,6 +54,7 @@
 <!-- dynamic select field from all entries of the db -->
     <%= selectfield = f.select("city", collect_cities , {:include_blank => 'Please select'})%>
      
+
   
   </div>
 
