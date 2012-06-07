@@ -35,6 +35,10 @@
             SYMP &copy; 2012 <a href="#">www.symp.com</a>
             <span class="sep">|</span>
             Impressum <a href="http://impressum.de" title="title"></a>
+            <% if current_user %>
+              <span class="sep">|</span>
+              <%= link_to 'Logout', logout_path %>
+            <% end %>
         </p>
     </footer> <!-- #footer -->
   
