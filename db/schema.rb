@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120608123921) do
+ActiveRecord::Schema.define(:version => 20120608194618) do
 
   create_table "posts", :force => true do |t|
     t.string   "subject"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(:version => 20120608123921) do
     t.datetime "updated_at", :null => false
     t.integer  "topic_id"
     t.integer  "user_id"
+  end
+
+  create_table "private_messages", :force => true do |t|
+    t.integer  "sender"
+    t.integer  "recipient"
+    t.string   "subject"
+    t.text     "message"
+    t.boolean  "unread"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "ratings", :force => true do |t|

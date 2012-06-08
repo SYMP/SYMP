@@ -63,9 +63,14 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    namecheck = User.where('name = ?', params[:user][:name])
 
     respond_to do |format|
-      if @user.save
+      if namecheck.count > 0
+        @user.errors.add(:name, "- this username is already taken")
+        format.html { render action: "new" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      elsif @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
