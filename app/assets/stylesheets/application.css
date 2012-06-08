@@ -295,7 +295,7 @@ q { font-style: italic; }
 		font: 18px Garamond, 'Droid Serif', Georgia, serif;
 	}
 	
-/* -------------------- Tables  --------------------------- */
+/* Tables */
 table {
 	border: 1px solid #e7e7e7;
 	border-collapse: collapse; border-spacing: 0;
@@ -312,7 +312,7 @@ table {
 		color: #444;
 		font-size: 15px;
 		font-weight: bold;
-		padding: 9px 15px;
+		padding: 9px 24px;
 		-webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, .04);
 		-moz-box-shadow: inset 0 0 10px rgba(0, 0, 0, .04);
 		box-shadow: inset 0 0 10px rgba(0, 0, 0, .04);
@@ -322,7 +322,7 @@ table {
 	tr td {
 		background: #fafafa;
 		border: 1px solid #e7e7e7;
-		padding: 5px 15px;
+		padding: 6px 24px;
 	}
 	
 	td { vertical-align: top; }
