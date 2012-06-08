@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :authenticate
   # helper methods can be used in view as well
-  helper_method :current_user_session, :current_user 
+  helper_method :current_user_session, :current_user
 
     public
     def current_user_session

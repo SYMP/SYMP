@@ -15,30 +15,18 @@
   <tr>
     <td><%= user.name %></td>
     <td><%= user.email %></td>
-    
     <td><%= user.birthdate %></td>
     <td><%= user.city %></td>
-
-
-    <% @skills.each do |skill| %>
-      <% if user.id == skill.user_id %> 
-            <td><%= skill.skill %></td>
-      <% end %>     
-    <% end %>
-
     <td><%= link_to 'Show', user %></td>
-    
     <% if user.id == current_user.id %>
-
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
       <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
-
+    <% end %>
   </tr>
-
-<% end %>
 <% end %>
 </table>
 
 <br />
-
+<div class="color-link">
 <%= link_to 'New User', new_user_path %>
+</div>

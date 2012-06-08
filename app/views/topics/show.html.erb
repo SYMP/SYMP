@@ -1,33 +1,46 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <h2><%= @topic.title %></h2>
-  <%= link_to 'Edit topic title', edit_topic_path(@topic) %> <!-- IF owner -->
-</p>
+<div class="topic-heading"><%= @topic.title %></div> 
+<% if current_user.id == @topicOwner.id%>
+	<div class="edit-topic-title">
+		<%= link_to 'Edit topic title', edit_topic_path(@topic) %>
+	</div>
+<% else %>
+	<div class="topic-owner">
+		<%= link_to @topicOwner.name, user_path(@topicOwner) %> 
+	</div>
+<% end %>
+<hr>
 <% if @posts.empty? %>
 <%= link_to 'New Post', new_topic_post_path(@topic) %>
 <% end %>
 
 <% if !@posts.empty? %>
 	<% @posts.each do |post| %>
-		<div class="post-subject">
-			<%= post.subject %>
+	    <% postOwner = @postOwners[post.id] %>
+	    <div class="post-container">
+			<div class="post-subject">
+				<%= post.subject %> 
+			</div>
+			<div class="post-owner"><%= link_to postOwner.name, user_path(postOwner) %></div>
+			<div class="post-message">
+				<%= post.message %>
+			</div>
+			<div class="post-actions">
+				<% if postOwner.id == current_user.id %>
+					<%= link_to 'Edit Post', edit_topic_post_path(@topic,post) %>
+					| <!-- to seperate the links -->
+					<%= link_to 'Delete Post', topic_post_path(@topic,post), confirm: 'Are you sure?', method: :delete %>
+					| <!-- to seperate the links -->
+					<% end %>
+				<%= link_to 'New Post', new_topic_post_path(@topic) %>
+			</div>
+			<hr>	
 		</div>
-		<div class="post-message">
-			<%= post.message %>
-		</div>
-		<hr>
-		<%= link_to 'Edit Post', edit_topic_post_path(@topic,post) %>
-		| <!-- to seperate the links -->
-		<%= link_to 'Delete Post', topic_post_path(@topic,post), confirm: 'Are you sure?', method: :delete %>
-		| <!-- to seperate the links -->
-		<%= link_to 'New Post', new_topic_post_path(@topic) %>
-		<hr>
 	<% end %>
 <% end %>
 
 <p>
 
-<!--older variante, but it works-->
-<%= link_to 'Back', :controller => "forum", :action => "index" %> 
+<%= link_to 'Back', forum_path %> 
 </p>

@@ -49,21 +49,19 @@ class SearchesController < ApplicationController
       @test = ''
 
       if params[:search][:name].empty? && !params[:search][:city].empty?
-
               @users = User.where('city = ?', params[:search][:city]) 
-              @skills = Skill.all
-#läuft
-                # Or if Cityfield is empty, only search for name
 
+                # Or if Cityfield is empty, only search for name
         elsif  !params[:search][:name].empty? && params[:search][:city].empty?
              @users = User.where('name = ? ', params[:search ][:name])
 
         elsif !params[:search][:name].empty? && !params[:search][:city].empty?
             @users = User.where('name = ? AND city =? ', params[:search ][:name], params[:search ][:city])
-
         else
           @users = User.all
       end
+
+      
 
       if params[:search][:skill].eql?("Please choose")
         @result = @users
