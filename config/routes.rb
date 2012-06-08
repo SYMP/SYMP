@@ -22,6 +22,10 @@ SYMP::Application.routes.draw do
 
   get "login" => "user_sessions#new"
   get "logout" => "user_sessions#destroy"
+  
+  match 'logout', :to => 'user_sessions#destroy', :as => "logout"
+ 
+  match 'forum', :to => 'forum#index', :as => "forum"
 
   resources :home
 
