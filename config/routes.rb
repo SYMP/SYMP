@@ -1,4 +1,6 @@
 SYMP::Application.routes.draw do 
+  resources :roles
+
   get "home/index"
 
   get "forum/index"

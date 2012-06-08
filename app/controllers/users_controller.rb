@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
   skip_before_filter :authenticate, :only => [:new, :create, :index]
+  @roles = Role.all 
+
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,11 +14,28 @@ class UsersController < ApplicationController
     end
   end
 
+  def role
+
+  end
+
+  def role
+    role = case Role.where('user_id = ?', :id)[0].role 
+        when 0 then "Administrator"
+        when 1 then "Moderator"
+        else "User"
+      end
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
     @skills = Skill.where('user_id = ?', params[:id])
+    #@role = case Role.where('user_id = ?', params[:id])[0].role 
+    #  when 0 then "Administrator"
+    #  when 1 then "Moderator"
+    #  else "User"
+    #end
 
     respond_to do |format|
       format.html # show.html.erb
