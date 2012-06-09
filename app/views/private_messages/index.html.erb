@@ -1,25 +1,25 @@
-<h1>Listing private_messages</h1>
+<h1>Message Inbox</h1>
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+<% if @popup_message %>
+  <script type="text/javascript">
+   alert("<%= @popup_message %>");
+  </script>
+<% end %>
 
 <table>
   <tr>
-    <th>To</th>
     <th>From</th>
     <th>Subject</th>
-    <th>Unread</th>
-    <th></th>
-    <th></th>
     <th></th>
   </tr>
 
-<% @private_messages.each do |private_message| %>
+<% @private_messages.reverse_each do |private_message| %>
   <tr>
-    <td><%= private_message.recipient %></td>
-    <td><%= private_message.sender %></td>
-    <td><%= private_message.subject %></td>
-    <td><%= private_message.unread %></td>
-    <td><%= link_to 'Show', private_message %></td>
-    <td><%= link_to 'Edit', edit_private_message_path(private_message) %></td>
-    <td><%= link_to 'Destroy', private_message, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= User.find(private_message.sender).name %></td>
+    <td><%= link_to private_message.subject, private_message %></td>
+    <td><%= link_to 'Delete', private_message, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

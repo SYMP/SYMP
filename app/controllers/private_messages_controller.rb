@@ -14,6 +14,8 @@ class PrivateMessagesController < ApplicationController
   # GET /private_messages/1.json
   def show
     @private_message = PrivateMessage.find(params[:id])
+    @private_message.unread = false
+    @private_message.save
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +27,9 @@ class PrivateMessagesController < ApplicationController
   # GET /private_messages/new.json
   def new
     @private_message = PrivateMessage.new
+    if(params[:id] != nil)
+      @private_message.recipient = User.find(params[:id]).name
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -55,13 +60,26 @@ class PrivateMessagesController < ApplicationController
         format.html { render action: "new" }
         format.json { render json: @private_message.errors, status: :unprocessable_entity }
       elsif @private_message.save
-        format.html { redirect_to @private_message, notice: 'Private message was successfully created.' }
+        @popup_message = 'Your message has been sent!'
+        format.html { redirect_to private_messages_url, notice: 'Your message has been sent' }
         format.json { render json: @private_message, status: :created, location: @private_message }
       else
         format.html { render action: "new" }
         format.json { render json: @private_message.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def reply
+    #@private_message = PrivateMessage.find(params[:id])
+    #@private_message.recipient = User.find(@private_message.sender).name
+    #@private_message.subject = ['Re: ', @private_message.subject].join('')
+    #@private_message.message = ["\n\n", User.find(@private_message.sender).name, " wrote:\n", @private_message.message].join('')
+    reply_msg = PrivateMessage.find(params[:id])
+    @private_message = PrivateMessage.new
+    @private_message.recipient = User.find(reply_msg.sender).name
+    @private_message.subject = ['Re: ', reply_msg.subject].join('')
+    @private_message.message = ["\n\n", User.find(reply_msg.sender).name, " wrote:\n", reply_msg.message].join('')
   end
 
   # PUT /private_messages/1

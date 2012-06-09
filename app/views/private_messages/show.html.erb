@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Sender:</b>
-  <%= @private_message.sender %>
+  <b>From:</b>
+  <%= User.find(@private_message.sender).name %>
 </p>
 
 <p>
-  <b>Recipient:</b>
-  <%= @private_message.recipient %>
+  <b>Subject:</b>
+  <%= @private_message.subject %>
 </p>
 
 <p>
@@ -15,11 +15,5 @@
   <%= @private_message.message %>
 </p>
 
-<p>
-  <b>Unread:</b>
-  <%= @private_message.unread %>
-</p>
-
-
-<%= link_to 'Edit', edit_private_message_path(@private_message) %> |
+<%= link_to 'Reply', reply_private_message_path(@private_message) %> |
 <%= link_to 'Back', private_messages_path %>

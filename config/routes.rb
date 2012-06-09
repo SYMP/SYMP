@@ -35,6 +35,12 @@ SYMP::Application.routes.draw do
 
   resources :home
 
+  resources :private_messages do
+    member do
+      get 'reply'
+    end
+  end
+
   # route for section->topic connection 
   # enables something like /section/1/topic and makes params[:section_id] available for the topics_controller
   resources :sections do

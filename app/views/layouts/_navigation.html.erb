@@ -25,6 +25,7 @@
                 <li><%= link_to "Register", new_user_path %></li>
             <% end %>
             <% if current_user != nil %>
+            <li><%= link_to ['Messages(', current_user.unread_messages, ')'].join(''), private_messages_path %></li>
                 <% if current_user.role.eql?("Administrator") %>
                     <li><%= link_to "Admin", new_role_path %></li>
                 <% end %>

@@ -21,4 +21,8 @@ class User < ActiveRecord::Base
         else "User"
       end
 	end
+
+	def unread_messages
+      PrivateMessage.where('recipient = ? AND unread = ?', id, true).count
+    end
 end

@@ -9,18 +9,16 @@
     <th>Role</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.name %></td>
+    <td><%= link_to user.name, user %></td>
     <td><%= user.email %></td>
     <td><%= user.birthdate %></td>
     <td><%= user.city %></td>
     <td><%= user.role %></td>
-    <td><%= link_to 'Show', user %></td>
-    <% if user.id == current_user.id %>
+    <% if user.id == current_user.id || current_user.role.eql?('Administrator')%>
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
       <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
     <% end %>

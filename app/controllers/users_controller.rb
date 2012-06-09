@@ -14,18 +14,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def role
-
-  end
-
-  def role
-    role = case Role.where('user_id = ?', :id)[0].role 
-        when 0 then "Administrator"
-        when 1 then "Moderator"
-        else "User"
-      end
-  end
-
   # GET /users/1
   # GET /users/1.json
   def show
