@@ -95,4 +95,21 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  private
+    #10.2
+    def current_user?(user)
+      user == current_user
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user)
+    end
+
+    #def admin_user
+     # redirect_to(root_path) unless current_user && current_user.admin?
+    #end
+
 end

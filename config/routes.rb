@@ -20,11 +20,14 @@ SYMP::Application.routes.draw do
   resources :skills
 
   resources :user_sessions
-  resources :users
+
+  resources :users 
 
   resources :home
   
   resources :forum
+
+  resources :relationships
 
   get "login" => "user_sessions#new"
   get "logout" => "user_sessions#destroy"
@@ -54,6 +57,17 @@ SYMP::Application.routes.draw do
   	resources :posts do
   	end
   end
+
+  # routes for following and followers
+  # routes respond to URIs containing the user id
+    resources :users do
+      member do
+        get :following, :follwers
+        end
+    end
+
+  resources :sessions,      only: [:new, :create, :destroy]
+  resources :relationships, only: [:create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
