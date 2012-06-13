@@ -33,6 +33,8 @@ SYMP::Application.routes.draw do
  
   match 'forum', :to => 'forum#index', :as => "forum"
 
+  match 'private_messages/new/:id' => 'private_messages#new', :as => :send_message
+
   resources :home
 
   resources :private_messages do
