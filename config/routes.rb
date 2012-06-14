@@ -62,7 +62,7 @@ SYMP::Application.routes.draw do
   # routes respond to URIs containing the user id
     resources :users do
       member do
-        get :following, :follwers
+        get :following, :followers
         end
     end
 

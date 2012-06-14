@@ -16,6 +16,7 @@
         <hgroup>
             <h1 id="site-title">  <%= link_to "SYMP", home_path%> </h1>
             <h2 id="site-description">ShareYourMusicPassion</h2>
+            
 
         </hgroup>
     
@@ -37,7 +38,7 @@
             Impressum <a href="http://impressum.de" title="title"></a>
             <% if current_user %>
               <span class="sep">|</span>
-              <%= link_to 'Logout', logout_path %>
+              <%= link_to 'Logout' , logout_path %> <%=  current_user.name %>
             <% end %>
         </p>
     </footer> <!-- #footer -->

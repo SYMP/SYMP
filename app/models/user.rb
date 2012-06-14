@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
 	has_many :skills, :dependent => :destroy # if user will be deleted, the skills will be destroy
 	has_many :relationships, foreign_key: "follower_id", dependent: :destroy
  	has_many :followed_users, through: :relationships, source: :followed	
+	has_many :followers, through: :reverse_relationships, source: "follower_id"
 
- 	has_many :followers, through: :reverse_relationships, source: "follower_id"
 #implementing user.followers using reverse relationships
  	has_many :reverse_relationships, foreign_key: "followed_id",
                                    class_name:  "Relationship",

@@ -1,6 +1,13 @@
 class RelationshipsController < ApplicationController
   before_filter :authenticate
 
+  def index
+      
+#      @relationships = Relationship.where('follower_id = ?', current_user.id)
+      @users = User.where('id = ? ', current_user.id) 
+   
+  end
+
   def create
     @user = User.find(params[:relationship][:followed_id])
     current_user.follow!(@user)
@@ -20,12 +27,8 @@ class RelationshipsController < ApplicationController
     end
   end
 
-def following
-    @title = "Following"
-    @user = User.find(params[:id])
-    @users = @user.following.paginate(:page => params[:page])
-    render 'show_follow'
-  end
+
+
   
 end
 

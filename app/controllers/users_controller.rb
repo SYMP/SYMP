@@ -107,6 +107,21 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
     end
+# war vorher im relationships_controller - vllt muss es wieder zurück?
+    def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.following.paginate(:page => params[:page])
+    render 'show_follow'
+    end
+
+    def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+    end
+
 
     #def admin_user
      # redirect_to(root_path) unless current_user && current_user.admin?
