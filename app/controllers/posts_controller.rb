@@ -2,11 +2,12 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
    def index
+   
    	if params[:topic_id]
    		@topic = Topic.find(params[:topic_id])
    		@posts = @topic.posts
    	else
-    	@posts = Post.all
+    	@posts = Post.where("user_id=?", current_user.id);
     end
  
      respond_to do |format|

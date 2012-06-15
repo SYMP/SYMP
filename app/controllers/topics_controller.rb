@@ -2,7 +2,12 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.all
+
+	if current_user.role.eql?("Administrator")  
+		@topics = Topic.all
+	else
+	    @topics = Topic.where("user_id=?", current_user.id)
+	end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,6 +18,7 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
+
     @topic = Topic.find(params[:id])
     @posts = @topic.posts
     @topicOwner = User.find(@topic.user_id)
