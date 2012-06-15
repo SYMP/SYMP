@@ -1,4 +1,10 @@
-<h1>Listing topics</h1>
+<h1>
+<% if current_user.role.eql?("Administrator") %>
+Listing topics
+<% else %>
+<%= current_user.name%>s topics
+<% end %>
+</h1>
 
 <table>
   <tr>
@@ -20,6 +26,4 @@
 
 <br />
 
-<%= link_to 'New Topic', new_topic_path %>
-| <!-- to seperate the links --> 
-<%= link_to 'Back', :controller => "forum"%>
+<%= link_to 'Got To Forum', forum_path %>

@@ -1,4 +1,8 @@
-SYMP::Application.routes.draw do
+SYMP::Application.routes.draw do 
+  resources :private_messages
+
+  resources :roles
+
   get "home/index"
 
   get "forum/index"
@@ -15,9 +19,29 @@ SYMP::Application.routes.draw do
 
   resources :skills
 
+  resources :user_sessions
   resources :users
 
   resources :home
+  
+  resources :forum
+
+  get "login" => "user_sessions#new"
+  get "logout" => "user_sessions#destroy"
+  
+  match 'logout', :to => 'user_sessions#destroy', :as => "logout"
+ 
+  match 'forum', :to => 'forum#index', :as => "forum"
+
+  match 'private_messages/new/:id' => 'private_messages#new', :as => :send_message
+
+  resources :home
+
+  resources :private_messages do
+    member do
+      get 'reply'
+    end
+  end
 
   # route for section->topic connection 
   # enables something like /section/1/topic and makes params[:section_id] available for the topics_controller

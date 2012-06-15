@@ -1,14 +1,20 @@
 class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
-  # def index
-#     @posts = Post.all
-# 
-#     respond_to do |format|
-#       format.html # index.html.erb
-#       format.json { render json: @posts }
-#     end
-#   end
+   def index
+   
+   	if params[:topic_id]
+   		@topic = Topic.find(params[:topic_id])
+   		@posts = @topic.posts
+   	else
+    	@posts = Post.where("user_id=?", current_user.id);
+    end
+ 
+     respond_to do |format|
+       format.html # index.html.erb
+       format.json { render json: @posts }
+     end
+   end
 
   # GET /posts/1
   # GET /posts/1.json
@@ -53,6 +59,8 @@ class PostsController < ApplicationController
 	else
     	@post = Post.new(params[:post])
     end
+
+    @post.user_id = current_user.id
 
     respond_to do |format|
       if @post.save

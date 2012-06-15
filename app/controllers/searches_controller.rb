@@ -44,33 +44,43 @@ class SearchesController < ApplicationController
   # POST /searches
   # POST /searches.json
   def create
-          
+      @result = Array.new
       # If Userfield is empty, only search for city
+      @test = ''
 
-      if params[:search][:name].empty? && params[:search][:city]
-
+      if params[:search][:name].empty? && !params[:search][:city].empty?
               @users = User.where('city = ?', params[:search][:city]) 
 
                 # Or if Cityfield is empty, only search for name
-        elsif  params[:search][:name] && params[:search][:city].empty?
-
+        elsif  !params[:search][:name].empty? && params[:search][:city].empty?
              @users = User.where('name = ? ', params[:search ][:name])
 
-        else
-
+        elsif !params[:search][:name].empty? && !params[:search][:city].empty?
             @users = User.where('name = ? AND city =? ', params[:search ][:name], params[:search ][:city])
+        else
+          @users = User.all
+      end
 
-        respond_to do |format|
+      
 
-     
-     #flash[:notice] = "Ergebnis" # so kann man flash nachrichten ausgeben
+      if params[:search][:skill].eql?("Please choose")
+        @result = @users
+      else
+        skills = Skill.all
+        @users.each do |user|
+          if skills.index {|s| s.user_id == user.id && s.skill.eql?(params[:search][:skill])} != nil
+            @result[@result.count] = user
+          end
+        end
+      end
+
+    respond_to do |format|
+      #flash[:notice] = "Ergebnis" # so kann man flash nachrichten ausgeben
       
       format.html 
       format.json { render json: @search }  
      
- end
-  end
-    
+    end
   end
 
   # PUT /searches/1

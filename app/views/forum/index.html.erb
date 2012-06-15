@@ -2,10 +2,11 @@
 <p id="notice"><% notice %></p>
 <% end %>
 
-
-<h1>SYMP Forum</h1>
 <hr>
-<%= link_to 'New Section', new_section_path %> <!-- IF ADMIN -->
+<%# if current_user.role == "Administrator" %>
+<%#= link_to 'Edit sections', sections_path%>
+<%# end %>
+
 
 <% if !@sections.empty? %>
 	<% @sections.each do |section| %>

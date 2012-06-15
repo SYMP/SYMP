@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120525085502) do
+ActiveRecord::Schema.define(:version => 20120608194618) do
 
   create_table "posts", :force => true do |t|
     t.string   "subject"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(:version => 20120525085502) do
     t.integer  "user_id"
   end
 
+  create_table "private_messages", :force => true do |t|
+    t.integer  "sender"
+    t.integer  "recipient"
+    t.string   "subject"
+    t.text     "message"
+    t.boolean  "unread"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "ratings", :force => true do |t|
     t.integer  "rated_user"
     t.integer  "rating_user"
@@ -30,6 +40,13 @@ ActiveRecord::Schema.define(:version => 20120525085502) do
     t.string   "rated_user_comment"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+  end
+
+  create_table "roles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "searches", :force => true do |t|
@@ -62,13 +79,21 @@ ActiveRecord::Schema.define(:version => 20120525085502) do
     t.integer  "user_id"
   end
 
+  create_table "user_sessions", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "pw_hash"
     t.date     "birthdate"
     t.string   "city"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "email"
+    t.string   "persistence_token"
+    t.string   "crypted_password"
   end
 
 end

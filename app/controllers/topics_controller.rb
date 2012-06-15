@@ -2,7 +2,12 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.all
+
+	if current_user.role.eql?("Administrator")  
+		@topics = Topic.all
+	else
+	    @topics = Topic.where("user_id=?", current_user.id)
+	end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,9 +18,13 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
+
     @topic = Topic.find(params[:id])
     @posts = @topic.posts
-
+    @topicOwner = User.find(@topic.user_id)
+    @postOwners = Hash.new
+    @posts.each { |p| @postOwners[p.id] = User.find(p.user_id)}
+   
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @topic }
@@ -28,9 +37,9 @@ class TopicsController < ApplicationController
 	if params[:section_id]
 		@section = Section.find(params[:section_id])	
 	end
-	
+		
 	@topic = Topic.new()
-   
+      
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @topic }
@@ -52,6 +61,8 @@ class TopicsController < ApplicationController
 	else
 		@topic = Topic.new(params[:topic])
 	end
+
+	@topic.user_id = current_user.id
 
     respond_to do |format|
       if @topic.save
