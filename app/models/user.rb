@@ -2,10 +2,16 @@ class User < ActiveRecord::Base
 	has_many :topics
 	has_many :posts
 	has_many :skills, :dependent => :destroy # if user will be deleted, the skills will be destroy
-	#has_one  :birthdate
-	#has_one  :city
-	#has_one  :pw_hash
+	has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+ 	has_many :followed_users, through: :relationships, source: :followed	
+	has_many :followers, through: :reverse_relationships, source: "follower_id"
 
+#implementing user.followers using reverse relationships
+ 	has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name:  "Relationship",
+                                   dependent:   :destroy
+
+	has_many :followers, through: :reverse_relationships, source: :follower                                   
 	acts_as_authentic do |config|
 	  config.crypto_provider = Authlogic::CryptoProviders::MD5
 	end
@@ -21,6 +27,19 @@ class User < ActiveRecord::Base
         else "User"
       end
 	end
+
+
+	def following?(other_user)
+    	relationships.find_by_followed_id(other_user.id)
+  	end 
+
+  	def follow!(other_user)
+    	relationships.create!(followed_id: other_user.id)
+  	end
+
+  	def unfollow!(other_user)
+    	relationships.find_by_followed_id(other_user.id).destroy
+  	end
 
 	def unread_messages
       PrivateMessage.where('recipient = ? AND unread = ?', id, true).count

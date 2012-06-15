@@ -34,9 +34,24 @@
   <% end %>
 </p>
 
+
+<% if @user.id != current_user.id %>
+  <div class="span8">
+    <%= render 'follow_form' %> 
+  </br>
+          
+  </div>
+<% end %>
+
+
 <%= link_to 'Send message', send_message_url(:id => @user.id) %>
+
 <% if @user.id == current_user.id %>
   <%= link_to 'Edit', edit_user_path(@user) %>
+  <span class="sep">|</span>
   <%= link_to 'New Skill', new_skill_path %>
+  <span class="sep">|</span>
 <% end %>
 <%= link_to 'Back', users_path %>
+
+

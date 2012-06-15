@@ -1,0 +1,17 @@
+<h1><%= render 'stats' %></h1>
+
+<ul>
+      <% @users.each do |user| %>
+       
+      <% @followed_users = user.followed_users %>  
+          <% @followed_users.each do |fu| %>
+            <li>
+              <%= link_to fu.name, fu  %> 
+              
+      <% end %> 
+          <% end %>
+        
+            </li>
+</ul>  
+
+

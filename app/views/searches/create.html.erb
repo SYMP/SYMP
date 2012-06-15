@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<h1>Search Result <%= @test %></h1>
+<h4>Your Search Result </h4>
 
 <!-- if there are no matches from the search-->
 <% if @result.empty? %>
@@ -13,8 +13,7 @@
     <th>Name</th>
       <th>City</th>
     <th></th>
-    <th></th>
-    <th></th>
+        
   </tr>
 
 <% @result.each do |user| %>
@@ -26,7 +25,7 @@
     <td><%= user.city %></td>
   
     <!-- @TODO: Show Profile without PW! -->
-   <td>  <td><%= link_to 'Show Profile', user %></td></td>
+   <td><%= link_to 'Show Profile', user %></td>
       
   </tr>
 
