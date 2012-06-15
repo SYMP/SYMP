@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <b>Role:</b>
+  <%= @user.role %>
+</p>
+
+<p>
   <b>Email:</b>
   <%= @user.email %>
 </p>
@@ -21,17 +26,17 @@
 </p>
 
 <p>
-  <b>Skills:</b><br />
+  <b>Skills:</b><br/>
   <% @skills.each do |skill| %>
-	<tr>
-      <td><%= skill.skill %></td><br/>
-	</tr>
+  <tr>
+  	<td><%= skill.skill %></td><br/>
+  </tr>
   <% end %>
 </p>
 
+<%= link_to 'Send message', send_message_url(:id => @user.id) %>
 <% if @user.id == current_user.id %>
   <%= link_to 'Edit', edit_user_path(@user) %>
   <%= link_to 'New Skill', new_skill_path %>
 <% end %>
 <%= link_to 'Back', users_path %>
-

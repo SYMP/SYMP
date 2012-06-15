@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+<h1>Search Result <%= @test %></h1>
+
+<!-- if there are no matches from the search-->
+<% if @result.empty? %>
+  
+  Sorry, but there are no matches for your search!
+
+<% else %>
+
+<table>
+  <tr>
+    <th>Name</th>
+      <th>City</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @result.each do |user| %>
+
+  <tr>
+
+    <td><%= user.name %></td>
+    
+    <td><%= user.city %></td>
+  
+    <!-- @TODO: Show Profile without PW! -->
+   <td>  <td><%= link_to 'Show Profile', user %></td></td>
+      
+  </tr>
+
+<% end %>
+<% end %>
+</table>
+
+
+
+<br />
+
+<%= link_to 'New Search', new_search_path %>
+
+
+

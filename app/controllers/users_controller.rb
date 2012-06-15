@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
   skip_before_filter :authenticate, :only => [:new, :create, :index]
+  @roles = Role.all 
+
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,6 +19,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @skills = Skill.where('user_id = ?', params[:id])
+    #@role = case Role.where('user_id = ?', params[:id])[0].role 
+    #  when 0 then "Administrator"
+    #  when 1 then "Moderator"
+    #  else "User"
+    #end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -43,9 +51,14 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    namecheck = User.where('name = ?', params[:user][:name])
 
     respond_to do |format|
-      if @user.save
+      if namecheck.count > 0
+        @user.errors.add(:name, "- this username is already taken")
+        format.html { render action: "new" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      elsif @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else

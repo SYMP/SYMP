@@ -1,0 +1,29 @@
+<%= form_for(@private_message) do |f| %>
+  <% if @private_message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@private_message.errors.count, "error") %> prohibited this private_message from being saved:</h2>
+
+      <ul>
+      <% @private_message.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "To:" %>
+    <%= f.text_field :recipient %>
+  </div>
+  <div class="field">
+    <%= f.label :subject %>
+    <%= f.text_field :subject %>
+  </div>
+  <div class="field">
+    <%= f.label :message %>
+    <%= f.text_area :message %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>

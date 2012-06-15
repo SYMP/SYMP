@@ -8,7 +8,6 @@ gem 'rails', '3.2.2'
 gem 'sqlite3'
 
 #gem 'paperclip', '~> 3.0'
-gem 'capybara'
 
 gem 'authlogic'
 gem 'factory_girl_rails'
@@ -25,11 +24,20 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :test, :development do
-  gem 'rspec-rails', '~> 2.0'
+group :development, :test do
+  gem "rails-erd"
+  gem "rspec-rails"
+  gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
 end
 
 gem 'jquery-rails'
+
+
+group :development do
+  gem "rails-erd"
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

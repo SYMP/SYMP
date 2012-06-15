@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>From:</b>
+  <%= User.find(@private_message.sender).name %>
+</p>
+
+<p>
+  <b>Subject:</b>
+  <%= @private_message.subject %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%= @private_message.message %>
+</p>
+
+<%= link_to 'Reply', reply_private_message_path(@private_message) %> |
+<%= link_to 'Back', private_messages_path %>

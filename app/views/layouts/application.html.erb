@@ -5,11 +5,42 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-</head>
-<body>
 
+</head>
+
+<body>
+	<div id="wrapper">
+
+    <header id="header" class="clearfix" role="banner">
+    
+        <hgroup>
+            <h1 id="site-title">  <%= link_to "SYMP", home_path%> </h1>
+            <h2 id="site-description">ShareYourMusicPassion</h2>
+
+        </hgroup>
+    
+    </header> <!-- #header -->
+
+<div id="main" class="clearfix">
+
+    <%= render ('layouts/navigation') %>
 
 <%= yield %>
 
+</div>
+
+<footer id="footer">
+        
+        <p>
+            SYMP &copy; 2012 <a href="#">www.symp.com</a>
+            <span class="sep">|</span>
+            Impressum <a href="http://impressum.de" title="title"></a>
+            <% if current_user %>
+              <span class="sep">|</span>
+              <%= link_to 'Logout', logout_path %>
+            <% end %>
+        </p>
+    </footer> <!-- #footer -->
+  
 </body>
 </html>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120525082957) do
+ActiveRecord::Schema.define(:version => 20120608194618) do
 
   create_table "posts", :force => true do |t|
     t.string   "subject"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(:version => 20120525082957) do
     t.datetime "updated_at", :null => false
     t.integer  "topic_id"
     t.integer  "user_id"
+  end
+
+  create_table "private_messages", :force => true do |t|
+    t.integer  "sender"
+    t.integer  "recipient"
+    t.string   "subject"
+    t.text     "message"
+    t.boolean  "unread"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "ratings", :force => true do |t|
@@ -32,8 +42,15 @@ ActiveRecord::Schema.define(:version => 20120525082957) do
     t.datetime "updated_at",          :null => false
   end
 
+  create_table "roles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "searches", :force => true do |t|
-    t.string   "user"
+    t.string   "name"
     t.string   "skill"
     t.string   "city"
     t.datetime "created_at", :null => false
@@ -60,6 +77,11 @@ ActiveRecord::Schema.define(:version => 20120525082957) do
     t.datetime "updated_at", :null => false
     t.integer  "section_id"
     t.integer  "user_id"
+  end
+
+  create_table "user_sessions", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
