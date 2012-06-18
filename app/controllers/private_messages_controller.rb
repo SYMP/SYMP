@@ -10,6 +10,15 @@ class PrivateMessagesController < ApplicationController
     end
   end
 
+  def outbox
+    @private_messages = PrivateMessage.where("sender = ?", current_user.id)
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @private_messages }
+    end
+  end
+
   # GET /private_messages/1
   # GET /private_messages/1.json
   def show

@@ -10,10 +10,12 @@
   <%= @user.role %>
 </p>
 
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
+<% if current_user.role.eql?('Administrator') %>
+  <p>
+    <b>Email:</b>
+    <%= @user.email %>
+  </p>
+<% end %>
 
 <p>
   <b>Birthdate:</b>
