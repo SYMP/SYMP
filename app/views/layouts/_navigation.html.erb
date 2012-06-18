@@ -1,10 +1,11 @@
  <nav id="menu" class="clearfix" role="navigation">
     <ul> 
-        <li class="<%= "current" if params[:controller] == "home" %>">
+        <li class="<%= "current" if params[:controller] == "home"%>" OR "<%="current" if params[:controller] == 
+        "user_session" %>">
             <%= link_to "Home", home_path%>
         </li>           
                
-        <li class="<%= "current" if params[:controller] == "forum"%>">
+        <li class="<%= "current" if params[:controller] == "forum"%> && <%="current" if params[:controller] == "sections" %>  && <%="current" if params[:controller] == "topics" %>  && <%="current" if params[:controller] == "posts" %> ">
             <%= link_to "Forum", forum_path %>
             
                  <% if current_user != nil && current_user.role.eql?("Administrator") %>
@@ -12,6 +13,7 @@
 
                         <li class="<%= "current" if params[:controller] == "sections" %>">
                             <%= link_to 'Edit Sections', sections_path%></li> 
+
                         <li class="<%= "current" if params[:controller] == "topics" %>">   
                     	   <%= link_to 'Edit Topics', topics_path%></li> 
                         <li class="<%= "current" if params[:controller] == "topics" %>"> 
