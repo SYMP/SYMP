@@ -2,7 +2,7 @@ class PrivateMessagesController < ApplicationController
   # GET /private_messages
   # GET /private_messages.json
   def index
-    @private_messages = PrivateMessage.where("recipient = ?", current_user.id)
+    @private_messages = PrivateMessage.where("recipient = ? AND recipient_deleted = ?", current_user.id, false)
     #@private_messages = PrivateMessage.all
     respond_to do |format|
       format.html # index.html.erb
@@ -11,7 +11,7 @@ class PrivateMessagesController < ApplicationController
   end
 
   def outbox
-    @private_messages = PrivateMessage.where("sender = ?", current_user.id)
+    @private_messages = PrivateMessage.where("sender = ? AND sender_deleted = ?", current_user.id, false)
 
     respond_to do |format|
       format.html
@@ -60,6 +60,9 @@ class PrivateMessagesController < ApplicationController
     if rec[0] != nil
       @private_message.recipient = rec[0].id
     end
+
+    @private_message.sender_deleted = false
+    @private_message.recipient_deleted = false
 
     @private_message.unread = true
 
@@ -111,7 +114,17 @@ class PrivateMessagesController < ApplicationController
   # DELETE /private_messages/1.json
   def destroy
     @private_message = PrivateMessage.find(params[:id])
-    @private_message.destroy
+    #@private_message.destroy
+    if @private_message.sender == current_user.id
+      @private_message.update_attribute(:sender_deleted, "true")
+    end
+    if @private_message.recipient == current_user.id
+      @private_message.update_attribute(:recipient_deleted, "true")
+    end
+
+    if @private_message.sender_deleted == true && @private_message.recipient_deleted == true
+      @private_message.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to private_messages_url }
