@@ -1,4 +1,4 @@
-<h1>Message Inbox</h1>
+<h1>Message Outbox</h1>
 <% if flash[:notice] %>
   <p class="notice"><%= flash[:notice] %></p>
 <% end %>
@@ -10,22 +10,24 @@
 
 <table>
   <tr>
-    <th>From</th>
+    <th>To</th>
     <th>Subject</th>
     <th></th>
   </tr>
 
 <% @private_messages.reverse_each do |private_message| %>
-  <tr>
-    <td><%= User.find(private_message.sender).name %></td>
-    <td><%= link_to private_message.subject, private_message %></td>
-    <td><%= link_to 'Delete', private_message, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+  <% if private_message.recipient != 0 %>
+    <tr>
+      <td><%= User.find(private_message.recipient).name %></td>
+      <td><%= link_to private_message.subject, private_message %></td>
+      <td><%= link_to 'Delete', private_message, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'Outbox', outbox_path %>
+<%= link_to 'Inbox', private_messages_path %>
 <span class="sep">|</span>
 <%= link_to 'New Private message', new_private_message_path %>
