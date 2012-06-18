@@ -12,7 +12,7 @@
 	<% @sections.each do |section| %>
 		<div class="forum_section">
 			<hr>
-			<h2><%= section.title %></h2>
+			<h3><%= section.title %></h3>
 			<%= sanitize(section.description) %>
 			<p>
 			<%= link_to 'New Topic', new_section_topic_path(section) %>
