@@ -2,10 +2,12 @@
 <caption>Listing users</caption>
   <tr>
     <th>Name</th>
-    <th>Email</th>
-    <th>Birthdate</th>
     <th>City</th>
     <th>Role</th>
+    <% if current_user.role.eql?('Administrator') %>
+      <th>Email</th>
+      <th>Birthdate</th>
+    <% end %>
     <th></th>
     <th></th>
   </tr>
@@ -13,10 +15,12 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= link_to user.name, user %></td>
-    <td><%= user.email %></td>
-    <td><%= user.birthdate %></td>
     <td><%= user.city %></td>
     <td><%= user.role %></td>
+    <% if current_user.role.eql?('Administrator') %>
+      <td><%= user.email %></td>
+      <td><%= user.birthdate %></td>
+    <% end %>
     <% if user.id == current_user.id || current_user.role.eql?('Administrator')%>
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
       <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>

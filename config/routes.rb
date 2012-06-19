@@ -1,4 +1,6 @@
 SYMP::Application.routes.draw do 
+  match '/private_messages/outbox', :controller => 'private_messages', :action => 'outbox'
+
   resources :private_messages
 
   resources :roles
@@ -37,6 +39,7 @@ SYMP::Application.routes.draw do
   match 'forum', :to => 'forum#index', :as => "forum"
 
   match 'private_messages/new/:id' => 'private_messages#new', :as => :send_message
+  match 'private_messages/outbox', :to => 'private_messages#outbox', :as => 'outbox'
 
   resources :home
 

@@ -1,41 +1,55 @@
  <nav id="menu" class="clearfix" role="navigation">
-        <ul> 
-            <li class="current"><%= link_to "Home", home_path%> </li>
+    <ul> 
+        <li class="<%= "current" if params[:controller] == "home"%>" OR "<%="current" if params[:controller] == "user_session" %>">
+            <%= link_to "Home", home_path%>
+        </li>           
+               
+        <li class="<%= "current" if params[:controller] == "forum"%> && <%="current" if params[:controller] == "sections" %>  && <%="current" if params[:controller] == "topics" %>  && <%="current" if params[:controller] == "posts" %> ">
+            <%= link_to "Forum", forum_path %>
+            
+                 <% if current_user != nil && current_user.role.eql?("Administrator") %>
+                <ul>
 
-                <li>    
-             
-                    <%= link_to "Forum", forum_path %>
-                    <% if current_user != nil && current_user.role.eql?("Administrator") %>
-                    <ul>
-
-                        <li> <%= link_to 'Edit Sections', sections_path%></li> 
-                    	<li> <%= link_to 'Edit Topics', topics_path%></li> 
-                    	<!--li> <%#= link_to 'My Topics', topics_path%></li> 
-                    	<li> <%#= link_to 'My Posts', posts_path%></li--> 
+                        <li class="<%= "current" if params[:controller] == "sections" %>">
+                            <%= link_to 'Edit Sections', sections_path%></li> 
+                        <li class="<%= "current" if params[:controller] == "topics" %>">   
+                    	   <%= link_to 'Edit Topics', topics_path%></li> 
+                        <!--li class="<%#= "current" if params[:controller] == "topics" %>"--> 
+                    	   <%#= link_to 'My Topics', topics_path%></li> 
+                        <!--li class="<%#<div></div>= "current" if params[:controller] == "posts" %>"--> 
+                    	   <%#= link_to 'My Posts', posts_path%></li> 
                     </ul>
                     <% else if current_user != nil && current_user.role.eql?("User") %>
                     <ul>
-                    	<li> <%= link_to 'My Topics', topics_path%></li> 
-                    	<li> <%= link_to 'My Posts', posts_path%></li> 
+                    	<li class="<%= "current" if params[:controller] == "topics" %>"> 
+                            <%= link_to 'My Topics', topics_path%></li> 
+                        <li class="<%= "current" if params[:controller] == "posts" %>"> 
+                    	    <%= link_to 'My Posts', posts_path%></li> 
                     </ul>
                     <% end %>
                     <% end %>
 
                 </li>
 
-            <li><%= link_to "Search", new_search_path%></li>
+            <li></li>
+            
+            <li class="<%= "current" if params[:controller] == "searches" %>"><%= link_to "Search", new_search_path%></li>
+
             <% if current_user %>
-                <li><%= link_to "Users", users_path%></li>
+                <li class="<%= "current" if params[:controller] == "users" %>"><%= link_to "Users", users_path%></li>
             <% else %>
 
-                <li><%= link_to "Register", new_user_path %></li>
+                <li class="<%= "current" if params[:controller] == "users" %>"><%= link_to "Register", new_user_path %></li>
             <% end %>
             <% if current_user != nil %>
-            <li><%= link_to ['Messages(', current_user.unread_messages, ')'].join(''), private_messages_path %></li>
-            <li><%= link_to "Favorites", relationships_path %></li>
+
+            <li class="<%= "current" if params[:controller] == "private_messages" %>">
+                <%= link_to ['Messages(', current_user.unread_messages, ')'].join(''), private_messages_path %></li>
+            
+            <li class="<%= "current" if params[:controller] == "relationships" %>"><%= link_to "Favorites", relationships_path %></li>
 
                 <% if current_user.role.eql?("Administrator") %>
-                    <li><%= link_to "Admin", new_role_path %></li>
+                    <li class="<%= "current" if params[:controller] == "roles" %>"><%= link_to "Admin", new_role_path %></li>
                 <% end %>
             
             <% end %>
