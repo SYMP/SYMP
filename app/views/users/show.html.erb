@@ -47,7 +47,7 @@
 
 
 <%= link_to 'Send message', send_message_url(:id => @user.id) %>
-
+<span class="sep">|</span>
 <% if @user.id == current_user.id %>
   <%= link_to 'Edit', edit_user_path(@user) %>
   <span class="sep">|</span>
