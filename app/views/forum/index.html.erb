@@ -3,10 +3,6 @@
 <% end %>
 
 <hr>
-<%# if current_user.role == "Administrator" %>
-<%#= link_to 'Edit sections', sections_path%>
-<%# end %>
-
 
 <% if !@sections.empty? %>
 	<% @sections.each do |section| %>

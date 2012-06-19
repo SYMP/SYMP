@@ -10,8 +10,8 @@
 
                         <li> <%= link_to 'Edit Sections', sections_path%></li> 
                     	<li> <%= link_to 'Edit Topics', topics_path%></li> 
-                    	<li> <%= link_to 'My Topics', topics_path%></li> 
-                    	<li> <%= link_to 'My Posts', posts_path%></li> 
+                    	<!--li> <%#= link_to 'My Topics', topics_path%></li> 
+                    	<li> <%#= link_to 'My Posts', posts_path%></li--> 
                     </ul>
                     <% else if current_user != nil && current_user.role.eql?("User") %>
                     <ul>

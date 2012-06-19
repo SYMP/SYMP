@@ -1,12 +1,11 @@
-<h1>
+<table>
+<caption>
 <% if current_user.role.eql?("Administrator") %>
 Listing topics
 <% else %>
 <%= current_user.name%>s topics
 <% end %>
-</h1>
-
-<table>
+</caption>
   <tr>
     <th>Title</th>
     <th></th>
