@@ -1,5 +1,6 @@
  <nav id="menu" class="clearfix" role="navigation">
     <ul> 
+
         <li class="<%= "current" if params[:controller] == "home"%> && <%="current" if params[:controller] == "user_sessions" %>">
             <%= link_to "Home", home_path%>
         </li>           
@@ -12,11 +13,8 @@
 
                         <li class="<%= "current" if params[:controller] == "sections" %>">
                             <%= link_to 'Edit Sections', sections_path%></li> 
-
                         <li class="<%= "current" if params[:controller] == "topics" %>">   
                     	   <%= link_to 'Edit Topics', topics_path%></li> 
-                        <li class="<%= "current" if params[:controller] == "topics" %>"> 
-                    	   <%= link_to 'My Topics', topics_path%></li> 
                         <li class="<%= "current" if params[:controller] == "posts" %>"> 
                     	   <%= link_to 'My Posts', posts_path%></li> 
                     </ul>
