@@ -1,7 +1,6 @@
  <nav id="menu" class="clearfix" role="navigation">
     <ul> 
-        <li class="<%= "current" if params[:controller] == "home"%>" OR "<%="current" if params[:controller] == 
-        "user_session" %>">
+        <li class="<%= "current" if params[:controller] == "home"%> && <%="current" if params[:controller] == "user_sessions" %>">
             <%= link_to "Home", home_path%>
         </li>           
                
