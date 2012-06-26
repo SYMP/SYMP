@@ -13,3 +13,27 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+// require jquery_ui
+
+
+//  für die Slideshow 
+$(function(){
+$("div.slideshow").carousel( { direction: "vertical" ,
+			autoSlide: true,
+			 autoSlideInterval: 3000,
+			 loop: true,
+			 effect: "fade"
+        	} );
+        
+    });
+
+// TEST für das alertfenster für Link1
+jQuery(function(){
+	$('a[data-meldung]').click(function(){
+	alert($(this).data('meldung'))
+});
+});
+
+

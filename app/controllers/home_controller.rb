@@ -1,4 +1,4 @@
 class HomeController < ApplicationController
-  def index
-  end
+
+ 	skip_before_filter :authenticate, :only => [:new, :create, :index]
 end
