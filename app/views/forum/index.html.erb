@@ -13,17 +13,17 @@
 			<p>
 			<%= link_to 'New Topic', new_section_topic_path(section) %>
 			</p>
-			<% for topic in @sectionTopics[section.id] do %>
-				<div class="section_topic">
-					<%= link_to topic.title, section_topic_path(section,topic) %>
-					<% if topic.posts.length > 1 %>
-						( <%= topic.posts.length %> posts )
-					<% else %>
-						( <%= topic.posts.length %> post )						
-					<% end %>
+			<!--% for topic in @sectionTopics[section.id] do %-->
+				<!--div class="section_topic">
+					<%#= link_to topic.title, section_topic_path(section,topic) %>
+					<%# if topic.posts.length > 1 %>
+						( <%#= topic.posts.length %> posts )
+					<%# else %>
+						( <%#=topic.posts.length %> post )						
+					<%# end %>
 					
-				</div>
-			<% end %>
+				</div-->
+			<%# end %>
 			
 		</div>	
 		<hr>

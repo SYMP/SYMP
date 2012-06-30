@@ -1,9 +1,9 @@
 <table>
 <caption>
 <% if current_user.role.eql?("Administrator") %>
-Listing topics
+	Listing topics
 <% else %>
-<%= current_user.name%>s topics
+	<%= current_user.name%>s topics
 <% end %>
 </caption>
   <tr>

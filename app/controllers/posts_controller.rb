@@ -7,7 +7,11 @@ class PostsController < ApplicationController
    		@topic = Topic.find(params[:topic_id])
    		@posts = @topic.posts
    	else
-    	@posts = Post.where("user_id=?", current_user.id);
+   		if current_user.role.eql?("Administrator")
+	   		@posts = Post.all
+	   	else
+    		@posts = Post.where("user_id=?", current_user.id);
+    	end
     end
  
      respond_to do |format|
@@ -97,11 +101,20 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post = Post.find(params[:id])
-    @topic = @post.topic
+    
+    if current_user.role.eql?("User")
+	    @topic = @post.topic
+    end
+    
     @post.destroy
 
     respond_to do |format|
-	  format.html { redirect_to({:controller => 'topics', :action =>'show', :id => @topic.id }, notice: 'Post was successfully deleted.')}
+      if current_user.role.eql?("Administrator")
+	     format.html { redirect_to posts_url }      
+      else
+     	 format.html { redirect_to({:controller => 'topics', :action =>'show', :id => @topic.id }, notice: 'Post was successfully deleted.')} 
+      end
+	 
       #format.html { redirect_to posts_url }
       #format.html { redirect_to topic_posts_url }
       format.json { head :no_content }

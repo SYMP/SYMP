@@ -10,6 +10,10 @@
   <%= @post.message %>
 </p>
 
-
-<%= link_to 'Edit', edit_topic_post_path(@post) %> 
-<%= link_to 'Back', section_topic_path(@section,@topic) %>
+<% if  current_user.role.eql?("Administrator") %> 
+	<%= link_to 'Edit', edit_post_path(@post) %> | 
+	<%= link_to 'Back', posts_path %>
+<% else %>
+	<%= link_to 'Edit', edit_topic_post_path(@post) %> | 
+	<%= link_to 'Back', section_topic_path(@section,@topic) %>
+<% end %>

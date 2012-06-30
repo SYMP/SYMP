@@ -1,6 +1,12 @@
-<h1><%= current_user.name%>s posts</h1>
-
 <table>
+<caption>
+<% if current_user.role.eql?("Administrator") %>
+	Listing posts
+<% else %>
+	<%= current_user.name%>s posts
+<% end %>
+</caption>
+
   <tr>
     <th>Subject</th>
     <th>Message</th>
