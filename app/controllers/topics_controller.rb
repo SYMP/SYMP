@@ -2,7 +2,6 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-
 	if current_user.role.eql?("Administrator")  
 		@topics = Topic.all
 	else

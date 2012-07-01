@@ -2,7 +2,7 @@ class SectionsController < ApplicationController
   # GET /sections
   # GET /sections.json
   def index
-    if current_user.role == "Administrator"
+   if current_user.role.eql?("Administrator")
 	    @sections = Section.all
 	
 	    respond_to do |format|
@@ -17,7 +17,7 @@ class SectionsController < ApplicationController
   # GET /sections/1
   # GET /sections/1.json
   def show
-   if current_user.role == "Administrator"
+   if current_user.role.eql?("Administrator")
 	    @section = Section.find(params[:id])
 	
 	    respond_to do |format|
@@ -32,7 +32,7 @@ class SectionsController < ApplicationController
   # GET /sections/new
   # GET /sections/new.json
   def new
-    if current_user.role == "Administrator"
+    if current_user.role.eql?("Administrator")
 	    @section = Section.new
 	
 	    respond_to do |format|
@@ -46,7 +46,7 @@ class SectionsController < ApplicationController
 
   # GET /sections/1/edit
   def edit
-	if current_user.role == "Administrator"
+   if current_user.role.eql?("Administrator")
 		  @section = Section.find(params[:id])
 	else
 	    redirect_to home_path
@@ -56,7 +56,7 @@ class SectionsController < ApplicationController
   # POST /sections
   # POST /sections.json
   def create
-  	if current_user.role == "Administrator"
+   if current_user.role.eql?("Administrator")
 	    @section = Section.new(params[:section])
 	
 	    respond_to do |format|
@@ -76,18 +76,18 @@ class SectionsController < ApplicationController
   # PUT /sections/1
   # PUT /sections/1.json
   def update
-	  if current_user.role == "Administrator"
-		    @section = Section.find(params[:id])
-		
-		    respond_to do |format|
-		      if @section.update_attributes(params[:section])
-		        format.html { redirect_to @section, notice: 'Section was successfully updated.' }
-		        format.json { head :no_content }
-		      else
-		        format.html { render action: "edit" }
-		        format.json { render json: @section.errors, status: :unprocessable_entity }
-		      end
-		    end
+   if current_user.role.eql?("Administrator")
+	  @section = Section.find(params[:id])
+	
+	  respond_to do |format|
+	    if @section.update_attributes(params[:section])
+	      format.html { redirect_to @section, notice: 'Section was successfully updated.' }
+	      format.json { head :no_content }
+	    else
+	      format.html { render action: "edit" }
+	      format.json { render json: @section.errors, status: :unprocessable_entity }
+	    end
+	  end
 	else
 	    redirect_to home_path
     end
@@ -96,7 +96,7 @@ class SectionsController < ApplicationController
   # DELETE /sections/1
   # DELETE /sections/1.json
   def destroy
-   if current_user.role == "Administrator"
+   if current_user.role.eql?("Administrator")
 	    @section = Section.find(params[:id])
 	    @section.destroy
 	
@@ -108,12 +108,5 @@ class SectionsController < ApplicationController
 	    redirect_to home_path
     end
   end
-  
-  
-  
-  
-  
-  
-  
-  
+    
 end

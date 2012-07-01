@@ -2,31 +2,57 @@
 <p id="notice"><% notice %></p>
 <% end %>
 
-<hr>
-
+<div id="section_container">
 <% if !@sections.empty? %>
 	<% @sections.each do |section| %>
+		<% latestSectionPost = @latestSectionPost[section.id]  %>
+		<% sectionTopics = @sectionTopics[section.id]  %>
+		
+		<% if !latestSectionPost.nil? %>
+			<% latestPoster = User.find(latestSectionPost.user_id) %>
+		<% end %>
+	
 		<div class="forum_section">
-			<hr>
 			<h3><%= section.title %></h3>
-			<%= sanitize(section.description) %>
-			<p>
-			<%= link_to 'New Topic', new_section_topic_path(section) %>
-			</p>
-			<!--% for topic in @sectionTopics[section.id] do %-->
-				<!--div class="section_topic">
-					<%#= link_to topic.title, section_topic_path(section,topic) %>
-					<%# if topic.posts.length > 1 %>
-						( <%#= topic.posts.length %> posts )
-					<%# else %>
-						( <%#=topic.posts.length %> post )						
-					<%# end %>
-					
-				</div-->
-			<%# end %>
 			
-		</div>	
-		<hr>
+
+			
+			<div class="section_description"> 
+				<%= sanitize(section.description) %>
+			</div>
+			
+						
+			<div class="section_menu">
+		    	<div class="show_topics">
+					<%= link_to 'Show topics', section_topics_path(section) %>
+				</div>
+
+		    	<div class="new_topic">
+					<%= link_to 'New Topic', new_section_topic_path(section) %>
+				</div>
+			</div>
+
+			<div class="section_stats">
+
+				<div class="latest_post"> 
+					<% if !latestSectionPost.nil? %>
+						<!--<%#= latestPoster.name %> posted <%#=  link_to latestSectionPost.subject, post_path(latestSectionPost) %> on <%#= latestSectionPost.updated_at.to_date %>-->
+						last update by <%= latestPoster.name %> on <%= latestSectionPost.updated_at.to_date %>						
+					<% end %>			
+				</div>	
+				
+				<% if sectionTopics.count > 0 %>
+					<div class="topic_count">
+						Topics: <%= sectionTopics.count%>
+					</div>
+				<% end %>	
+
+			</div>
+
+			
+			
+	 	</div>	
+	
 	<% end %>
 <% end %>
- 
+</div> 
