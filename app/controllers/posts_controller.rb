@@ -10,7 +10,12 @@ class PostsController < ApplicationController
    		if current_user.role.eql?("Administrator")
 	   		@posts = Post.all
 	   	else
-    		@posts = Post.where("user_id=?", current_user.id);
+    		if params[:mode].eql?("my")   		
+	    		@posts = Post.where("user_id=?", current_user.id);
+    		else
+				@posts = Post.all    		
+    		end
+    		
     	end
     end
  

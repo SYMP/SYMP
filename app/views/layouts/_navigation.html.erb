@@ -22,9 +22,9 @@
                     <% else if current_user != nil && current_user.role.eql?("User") %>
                     <ul>
                     	<li class="<%= "current" if params[:controller] == "topics" %>"> 
-                            <%= link_to 'My Topics', topics_path%></li> 
+                            <%= link_to 'My Topics', topics_path(:mode => "my")%></li> 
                         <li class="<%= "current" if params[:controller] == "posts" %>"> 
-                    	    <%= link_to 'My Posts', posts_path%></li> 
+                    	    <%= link_to 'My Posts', posts_path(:mode => "my")%></li> 
                     </ul>
                     <% end %>
                     <% end %>

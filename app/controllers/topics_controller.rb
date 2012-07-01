@@ -2,10 +2,18 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
+    	
 	if current_user.role.eql?("Administrator")  
 		@topics = Topic.all
 	else
-	    @topics = Topic.where("user_id=?", current_user.id)
+	   if params[:mode].eql?("my")   		
+	    	@topics = Topic.where("user_id=?", current_user.id);
+	   else
+			if params[:section_id]
+				@section = Section.find(params[:section_id])
+				@topics = @section.topics	
+			end   		
+	   end
 	end
 
     respond_to do |format|

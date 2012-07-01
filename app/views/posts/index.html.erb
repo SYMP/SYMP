@@ -1,6 +1,6 @@
 <table>
 <caption>
-<% if current_user.role.eql?("Administrator") %>
+<% if current_user.role.eql?("Administrator") || !params[:mode].eql?("my") %>
 	Listing posts
 <% else %>
 	<%= current_user.name%>s posts
