@@ -29,11 +29,6 @@ $("div.slideshow").carousel( { direction: "vertical" ,
         
     });
 
-// TEST für das alertfenster für Link1
-jQuery(function(){
-	$('a[data-meldung]').click(function(){
-	alert($(this).data('meldung'))
-});
-});
+
 
 
