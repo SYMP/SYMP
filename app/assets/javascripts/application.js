@@ -21,10 +21,11 @@
 //  für die Slideshow 
 $(function(){
 $("div.slideshow").carousel( { direction: "vertical" ,
-			autoSlide: true,
-			 autoSlideInterval: 3000,
+				autoSlide: true,
+			 autoSlideInterval: 4000,
 			 loop: true,
 			 effect: "fade"
+			 
         	} );
         
     });
