@@ -28,7 +28,14 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-	@post = Post.find(params[:id])
+	
+	if params[:id] && params[:topic_id] && params[:section_id]
+		@section = Section.find(params[:section_id])
+		@topic = @section.topics.find(params[:topic_id])
+		@post = @topic.posts.find(params[:id])
+	else
+		@post = Post.find(params[:id])	
+	end 
     
     respond_to do |format|
       format.html # show.html.erb
