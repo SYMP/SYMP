@@ -34,8 +34,7 @@
 
 				<div class="latest_post"> 
 					<% if !latestSectionPost.nil? %>
-						<!--<%#= latestPoster.name %> posted <%#=  link_to latestSectionPost.subject, post_path(latestSectionPost) %> on <%#= latestSectionPost.updated_at.to_date %>-->
-						last update by <%= latestPoster.name %> on <%= latestSectionPost.updated_at.to_date %>						
+						<%= latestPoster.name %> posted <%=  link_to latestSectionPost.subject, {:controller => "posts", :action => "show", :id => latestSectionPost.id, :topic_id => latestSectionPost.topic_id, :section_id => section.id } %> on <%= latestSectionPost.updated_at.to_date %>
 					<% end %>			
 				</div>	
 				
