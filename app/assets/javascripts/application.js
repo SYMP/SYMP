@@ -13,3 +13,23 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+// require jquery_ui
+
+
+//  für die Slideshow 
+$(function(){
+$("div.slideshow").carousel( { direction: "vertical" ,
+				autoSlide: true,
+			 autoSlideInterval: 4000,
+			 loop: true,
+			 effect: "fade"
+			 
+        	} );
+        
+    });
+
+
+
+
