@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120708113835) do
+ActiveRecord::Schema.define(:version => 20120708155358) do
 
   create_table "posts", :force => true do |t|
     t.string   "subject"
@@ -28,10 +28,14 @@ ActiveRecord::Schema.define(:version => 20120708113835) do
     t.string   "subject"
     t.text     "message"
     t.boolean  "unread"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.boolean  "sender_deleted",    :default => false
-    t.boolean  "recipient_deleted", :default => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+    t.boolean  "sender_deleted",             :default => false
+    t.boolean  "recipient_deleted",          :default => false
+    t.string   "pm_attachment_file_name"
+    t.string   "pm_attachment_content_type"
+    t.integer  "pm_attachment_file_size"
+    t.datetime "pm_attachment_updated_at"
   end
 
   create_table "ratings", :force => true do |t|

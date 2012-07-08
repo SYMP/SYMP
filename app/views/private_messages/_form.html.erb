@@ -1,4 +1,4 @@
-<%= form_for(@private_message) do |f| %>
+<%= form_for(@private_message, :html => { :multipart => true }) do |f| %>
   <% if @private_message.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@private_message.errors.count, "error") %> prohibited this private_message from being saved:</h2>
@@ -22,6 +22,10 @@
   <div class="field">
     <%= f.label :message %>
     <%= f.text_area :message %>
+  </div>
+  <div class="field">
+    <%= f.label :pm_attachment %>
+    <%= f.file_field :pm_attachment %>
   </div>
   <div class="actions">
     <%= f.submit "Send message" %>
