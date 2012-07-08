@@ -22,7 +22,7 @@ app/assets/images/bubbles.png
 
 app/assets/images/noten_2.jpg
 
-app/assets/javascripts/js/jquery.carousel.min.js
+# app/assets/javascripts/js/jquery.carousel.min.js
 
 app/views/home/index.html.erb
 
