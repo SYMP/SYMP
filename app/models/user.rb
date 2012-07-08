@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+	attr_accessible :name, :email, :birthdate, :city, :password, :password_confirmation, :avatar
+	has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+
 	has_many :topics
 	has_many :posts
 	has_many :skills, :dependent => :destroy # if user will be deleted, the skills will be destroy

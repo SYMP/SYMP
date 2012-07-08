@@ -1,6 +1,9 @@
 SYMP::Application.routes.draw do 
   match '/private_messages/outbox', :controller => 'private_messages', :action => 'outbox'
 
+  match '/users/delete_avatar', :controller => 'users', :action => 'delete_avatar'
+  match 'users/delete_avatar/:id' => 'users#delete_avatar', :as => :delete_avatar
+
   resources :private_messages
 
   resources :roles

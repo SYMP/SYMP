@@ -96,6 +96,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def delete_avatar
+    if current_user.role.eql?('Administrator')
+      @user = User.find(params[:id])
+      @user.avatar = nil
+      @user.save
+      @message = 'Avatar deleted'
+      pm = PrivateMessage.new(:sender => current_user.id, :recipient => params[:id], :subject => 'Warning', :message => 'Your avatar sucked and has been deleted!', :unread => true)
+      pm.save
+    else
+      @message = 'Get lost, you aren\'t allowed to delete anything'
+    end
+  end
+
 
   private
     #10.2

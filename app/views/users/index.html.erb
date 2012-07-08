@@ -2,12 +2,14 @@
 <table>
 <caption>Listing users</caption>
   <tr>
+    <th></th>
     <th>Name</th>
     <th>City</th>
     <th>Role</th>
     <% if current_user.role.eql?('Administrator') %>
       <th>Email</th>
       <th>Birthdate</th>
+      <th></th>
     <% end %>
     <th></th>
     <th></th>
@@ -15,6 +17,10 @@
 
 <% @users.each do |user| %>
   <tr>
+    <td>
+      <% if user.avatar_file_name != nil %>
+        <%= image_tag user.avatar.url(:thumb) %></td>
+      <% end %>
     <td><%= link_to user.name, user %></td>
     <td><%= user.city %></td>
     <td><%= user.role %></td>
@@ -25,6 +31,10 @@
     <% if user.id == current_user.id || current_user.role.eql?('Administrator')%>
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
       <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+      <td>
+        <% if user.avatar_file_name != nil %>
+          <%= link_to 'Delete Avatar', delete_avatar_path(user)%></td>
+        <% end %></td>
     <% end %>
   </tr>
 <% end %>
