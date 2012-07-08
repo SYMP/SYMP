@@ -19,8 +19,10 @@
   <tr>
     <td>
       <% if user.avatar_file_name != nil %>
-        <%= image_tag user.avatar.url(:thumb) %></td>
+        <%= image_tag user.avatar.url(:thumb) %>
+        <%= link_to 'Attachment', user.avatar.url %>
       <% end %>
+    </td>
     <td><%= link_to user.name, user %></td>
     <td><%= user.city %></td>
     <td><%= user.role %></td>
