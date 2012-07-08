@@ -102,6 +102,8 @@ class UsersController < ApplicationController
       @user.avatar = nil
       @user.save
       @message = 'Avatar deleted'
+      pm = PrivateMessage.new(:sender => current_user.id, :recipient => params[:id], :subject => 'Warning', :message => 'Your avatar sucked and has been deleted!', :unread => true)
+      pm.save
     else
       @message = 'Get lost, you aren\'t allowed to delete anything'
     end
