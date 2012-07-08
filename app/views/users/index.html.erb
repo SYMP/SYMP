@@ -2,6 +2,7 @@
 <table>
 <caption>Listing users</caption>
   <tr>
+    <th></th>
     <th>Name</th>
     <th>City</th>
     <th>Role</th>
@@ -15,6 +16,11 @@
 
 <% @users.each do |user| %>
   <tr>
+    <td>
+      <% if user.avatar != nil %>
+        <%= image_tag user.avatar.url(:thumb) %>
+      <% end %>
+    </td>
     <td><%= link_to user.name, user %></td>
     <td><%= user.city %></td>
     <td><%= user.role %></td>

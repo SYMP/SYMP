@@ -7,7 +7,7 @@ gem 'rails', '3.2.2'
 
 gem 'sqlite3'
 
-#gem 'paperclip', '~> 3.0'
+gem 'paperclip', '3.0.4'
 
 gem 'authlogic'
 gem 'factory_girl_rails'
