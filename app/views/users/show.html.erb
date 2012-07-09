@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<% if @user.avatar_file_name != nil %>
+  <%= image_tag @user.avatar.url %>
+<% end %>
+
 <p>
   <b>Name:</b>
   <%= @user.name %>

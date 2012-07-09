@@ -15,5 +15,12 @@
   <%= @private_message.message %>
 </p>
 
+<% if @private_message.pm_attachment_file_name != nil %>
+  <p>
+  	<b>Attachment:</b>
+  	<%= link_to @private_message.pm_attachment_file_name, @private_message.pm_attachment.url %>
+  </p>
+<% end %>
+
 <%= link_to 'Reply', reply_private_message_path(@private_message) %> |
 <%= link_to 'Back', private_messages_path %>

@@ -3,7 +3,8 @@
 <head>
   <title>SYMP</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "jquery","application" %>
+  
   <%= csrf_meta_tags %>
 
 </head>
@@ -16,11 +17,13 @@
         <hgroup>
             <h1 id="site-title">  <%= link_to "SYMP", home_path%> </h1>
             <h2 id="site-description">ShareYourMusicPassion</h2>
-            
-
+              
         </hgroup>
     
     </header> <!-- #header -->
+
+    <!-- für Loginform im Header-->
+  
 
 <div id="main" class="clearfix">
 

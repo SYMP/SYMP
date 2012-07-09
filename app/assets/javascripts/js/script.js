@@ -29,3 +29,6 @@ $(document).ready(function(){
 	});
 	
 });
+
+// ------------    For the Slideshow  --------------
+

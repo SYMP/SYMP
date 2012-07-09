@@ -123,6 +123,7 @@ class PrivateMessagesController < ApplicationController
     end
 
     if @private_message.sender_deleted == true && @private_message.recipient_deleted == true
+      @private_message.pm_attachment = nil
       @private_message.destroy
     end
 
