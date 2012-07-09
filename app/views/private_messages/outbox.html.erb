@@ -19,6 +19,7 @@
 <% @private_messages.reverse_each do |private_message| %>
   <% if private_message.recipient != 0 %>
     <tr>
+      <% recipient =
       <td><%= User.find(private_message.recipient).name %></td>
       <td><%= link_to private_message.subject, private_message %></td>
       <td><%= link_to 'Delete', private_message, confirm: 'Are you sure?', method: :delete %></td>
